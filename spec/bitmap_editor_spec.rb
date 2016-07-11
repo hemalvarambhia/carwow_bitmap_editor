@@ -1,13 +1,14 @@
 describe 'Editing a Bitmap' do
   context 'when an exit command is received' do
     class BitmapEditor
+      WHITE_IMAGE = [['0', '0'], ['0', '0']]
       attr_reader :image
       def initialize(input)
         @input = input
       end
 
       def run
-        @image = [['0','0'], ['0', '0']]
+        @image = WHITE_IMAGE
         exit if @input.gets == 'X'
       end
     end
