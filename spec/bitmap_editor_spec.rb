@@ -20,6 +20,8 @@ describe 'Editing a Bitmap' do
       exit if command == 'X'
     end
 
+    private
+
     def white_image(width, height)
       white_rows = Array.new(width) { 'O' }
       white_image = Array.new(height) { white_rows }
