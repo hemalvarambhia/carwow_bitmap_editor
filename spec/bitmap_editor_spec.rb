@@ -16,7 +16,7 @@ describe 'Editing a Bitmap' do
       end
 
       def white_image(width, height)
-        white_rows = Array.new(width) { '0' }
+        white_rows = Array.new(width) { 'O' }
         white_image = Array.new(height) { white_rows }
 
         white_image
@@ -62,7 +62,7 @@ describe 'Editing a Bitmap' do
 
     RSpec::Matchers.define :be_white_image do |width, height|
       match do |image|
-        white = '0' 
+        white = 'O' 
         columns = Array.new(width) { white }
      	white_image = Array.new(height) { columns }
         image == white_image
