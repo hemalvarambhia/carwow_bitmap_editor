@@ -38,7 +38,6 @@ describe 'Editing a Bitmap' do
 
       @editor.run
 
-      image = @editor.image
       expect(@editor.image).to be_white_image(2, 2)
     end
 
