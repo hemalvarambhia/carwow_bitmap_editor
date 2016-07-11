@@ -10,12 +10,10 @@ describe 'Editing a Bitmap' do
     def run
       command = @input.gets
       type, args = parse command
-      if type == 'I'
-        initialize_image(width: args.first.to_i, height: args.last.to_i)
-      end
+      initialize_image(
+        width: args.first.to_i, height: args.last.to_i) if type == 'I'
 
-      to_string = @image.map { |row| row.join }.join("\n")
-      @output.puts to_string if type == 'S'
+      @output.puts image_as_string if type == 'S'
  
       exit if type == 'X'
     end
@@ -37,6 +35,10 @@ describe 'Editing a Bitmap' do
       white_image = Array.new(height) { white_rows }
 
       white_image
+    end
+
+    def image_as_string
+      @image.map { |row| row.join }.join("\n")
     end
   end
 
