@@ -1,31 +1,32 @@
 describe 'Editing a Bitmap' do
-  context 'when an exit command is received' do
-    class BitmapEditor
-      attr_reader :image
-      def initialize(input)
-        @input = input
-      end
-
-      def run
-        command = @input.gets
-        width = command.split(' ')[1].to_i
-        height = command.split(' ')[2].to_i
-        @image = white_image(width, height)
-        exit if command == 'X'
-      end
-
-      def white_image(width, height)
-        white_rows = Array.new(width) { 'O' }
-        white_image = Array.new(height) { white_rows }
-
-        white_image
-      end
+  class BitmapEditor
+    attr_reader :image
+    def initialize(input, output = nil)
+      @input = input
     end
 
+    def run
+      command = @input.gets
+      width = command.split(' ')[1].to_i
+      height = command.split(' ')[2].to_i
+      @image = white_image(width, height)
+      exit if command == 'X'
+    end
+
+    def white_image(width, height)
+      white_rows = Array.new(width) { 'O' }
+      white_image = Array.new(height) { white_rows }
+
+      white_image
+    end
+  end
+
+  context 'when an exit command is received' do
     it 'exits' do
       input = double(:input)
+      output = double :output
       allow(input).to receive(:gets).and_return 'X'
-      editor = BitmapEditor.new input
+      editor = BitmapEditor.new input, output
 
       expect { editor.run }.to raise_error SystemExit
     end
@@ -34,7 +35,8 @@ describe 'Editing a Bitmap' do
   context 'when an initialize command is received' do
     before :each do
       @input = double :input
-      @editor = BitmapEditor.new @input
+      @output = double :output
+      @editor = BitmapEditor.new @input, @output
     end
 
     it 'continues to run' do
@@ -75,5 +77,9 @@ describe 'Editing a Bitmap' do
         message
       end
     end
+  end
+
+  context "when a 'show contents' command is received" do
+    it 'prints the image to the output'
   end
 end
