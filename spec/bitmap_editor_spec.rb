@@ -13,6 +13,8 @@ describe 'Editing a Bitmap' do
       initialize_image(
         width: args.first.to_i, height: args.last.to_i) if type == 'I'
 
+      @image[2][1] = 'A' if type == 'L' 
+
       @output.puts image_as_string if type == 'S'
  
       exit if type == 'X'
@@ -137,6 +139,20 @@ describe 'Editing a Bitmap' do
       expect(@output).to receive(:puts).with("OOOO\nOOOO\nOOOO\nOOOO")
     
       2.times { @editor.run }
+    end
+  end
+
+  context "when a 'colour pixel' command is received" do
+    it 'colours the pixel the color specified' do
+      input = double :input
+      io_output = double :output
+      allow(input).to receive(:gets).and_return 'I 5 6', 'L 2 3 A'
+      editor = BitmapEditor.new(input, io_output)
+
+      2.times { editor.run }
+      
+      image = editor.image
+      expect(image[2][1]).to eq 'A'
     end
   end
 end
