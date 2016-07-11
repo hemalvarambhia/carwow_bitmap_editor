@@ -24,7 +24,7 @@ describe 'Editing a Bitmap' do
   context 'when an exit command is received' do
     it 'exits' do
       input = double(:input)
-      output = double(:output).as_null_object
+      output = double :output
       allow(input).to receive(:gets).and_return 'X'
       editor = BitmapEditor.new input, output
 
@@ -35,7 +35,7 @@ describe 'Editing a Bitmap' do
   context 'when an initialize command is received' do
     before :each do
       @input = double :input
-      @output = double(:output).as_null_object
+      @output = double :output
       @editor = BitmapEditor.new @input, @output
     end
 
