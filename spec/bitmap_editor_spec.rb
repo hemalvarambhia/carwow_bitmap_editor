@@ -4,6 +4,7 @@ describe 'Editing a Bitmap' do
     def initialize(input, output)
       @input = input
       @output = output
+      @image = []
     end
 
     def run
@@ -13,7 +14,8 @@ describe 'Editing a Bitmap' do
         height = command.split(' ')[2].to_i
         @image = white_image(width, height)
       end
-      @output.puts "OOO\nOOO" if command.split[0] == 'S'
+      to_string = @image.map { |row| row.join }.join("\n")
+      @output.puts to_string if command.split[0] == 'S'
  
       exit if command == 'X'
     end
@@ -104,5 +106,12 @@ describe 'Editing a Bitmap' do
 
       2.times { @editor.run }
     end 
+
+    it 'displays the contents of any image' do
+      allow(@input).to receive(:gets).and_return 'I 4 4', 'S'
+      expect(@output).to receive(:puts).with("OOOO\nOOOO\nOOOO\nOOOO")
+    
+      2.times { @editor.run }
+    end
   end
 end
