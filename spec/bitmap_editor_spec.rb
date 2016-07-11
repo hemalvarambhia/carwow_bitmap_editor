@@ -85,14 +85,24 @@ describe 'Editing a Bitmap' do
   end
 
   context "when a 'show contents' command is received" do
-    it 'displays the contents of the image' do
-      input = double :input
-      allow(input).to receive(:gets).and_return 'I 3 2', 'S'
-      io_output = double(:output)
-      expect(io_output).to receive(:puts).with("OOO\nOOO")
-      editor = BitmapEditor.new(input, io_output)
+    before :each do
+      @input = double :input
+      @output = double :output
+      @editor = BitmapEditor.new(@input, @output)
+    end
 
-      2.times { editor.run }
+    it 'continues to run' do
+      allow(@output).to receive :puts
+      allow(@input).to receive(:gets).and_return 'S'
+
+      expect { @editor.run }.not_to raise_error
+    end
+
+    it 'displays the contents of the image' do
+      allow(@input).to receive(:gets).and_return 'I 3 2', 'S'
+      expect(@output).to receive(:puts).with("OOO\nOOO")
+
+      2.times { @editor.run }
     end 
   end
 end
