@@ -11,9 +11,9 @@ describe 'Editing a Bitmap' do
       command = @input.gets
       type, args = parse command
       if type == 'I'
-        dimensions = { width: args[0].to_i, height: args[1].to_i }
-        initialize_image(dimensions)
+        initialize_image(width: args.first.to_i, height: args.last.to_i)
       end
+
       to_string = @image.map { |row| row.join }.join("\n")
       @output.puts to_string if type == 'S'
  
