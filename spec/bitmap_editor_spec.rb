@@ -38,9 +38,23 @@ describe 'Editing a Bitmap' do
 
       @editor.run
 
-      expect(@editor.image.size).to eq 2
-      expect(@editor.image.sample.size).to eq 2
-      expect(@editor.image).to all eq ['0', '0']
+      image = @editor.image
+      expect(@editor.image).to be_white_image(2, 2)
+    end
+
+    RSpec::Matchers.define :be_white_image do |width, height|
+      match do |image|
+        white = '0' 
+        columns = Array.new(width) { white }
+     	expected_image = Array.new(height) { columns }
+        image == expected_image
+      end
+
+      failure_message do |actual|
+        message = "Expected a #{width} x #{height} white image but got:\n"
+        message << "#{actual.sample.size} x #{actual.size} white image"
+        message
+      end
     end
   end
 end
