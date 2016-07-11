@@ -8,7 +8,7 @@ describe 'Editing a Bitmap' do
     end
 
     def run
-      command = @input.gets
+      command = @input.gets.strip
       type, args = parse command
       initialize_image(
         width: args.first.to_i, height: args.last.to_i) if type == 'I'
