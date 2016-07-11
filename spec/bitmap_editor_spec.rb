@@ -45,8 +45,8 @@ describe 'Editing a Bitmap' do
       match do |image|
         white = '0' 
         columns = Array.new(width) { white }
-     	expected_image = Array.new(height) { columns }
-        image == expected_image
+     	white_image = Array.new(height) { columns }
+        image == white_image
       end
 
       failure_message do |actual|
