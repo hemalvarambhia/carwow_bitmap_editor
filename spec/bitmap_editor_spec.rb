@@ -11,9 +11,8 @@ describe 'Editing a Bitmap' do
       command = @input.gets
       type, args = parse command
       if type == 'I'
-        width = args[0].to_i
-        height = args[1].to_i
-        @image = white_image(width, height)
+        dimensions = { width: args[0].to_i, height: args[1].to_i }
+        @image = initialize_image(dimensions)
       end
       to_string = @image.map { |row| row.join }.join("\n")
       @output.puts to_string if type == 'S'
@@ -27,6 +26,10 @@ describe 'Editing a Bitmap' do
       type, *args = command.split ' '
 
       return type, args
+    end
+
+    def initialize_image(dimensions)
+      @image = white_image(dimensions[:width], dimensions[:height])
     end
 
     def white_image(width, height)
