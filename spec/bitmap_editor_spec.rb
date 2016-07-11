@@ -68,7 +68,7 @@ describe 'Editing a Bitmap' do
       end
 
       failure_message do |actual|
-        actual_image = actual.map {|row| row.join ' '}.join("\n")
+        actual_image = actual.map {|row| row.join}.join("\n")
         message = "Expected a #{width} x #{height} white image but got:\n"
         message << "#{actual.sample.size} x #{actual.size} white image:\n"
         message << actual_image
