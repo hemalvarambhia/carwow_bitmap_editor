@@ -51,6 +51,17 @@ describe 'Editing a Bitmap' do
 
       expect { editor.run }.to raise_error SystemExit
     end
+
+    context 'when the exit command contains a new line' do
+      it 'exits' do
+        input = double :input
+        io_output = double(:output)
+        allow(input).to receive(:gets).and_return "X\n"
+        editor = BitmapEditor.new input, io_output
+        
+        expect { editor.run }.to raise_error SystemExit
+      end
+    end
   end
 
   context 'when an initialize command is received' do
