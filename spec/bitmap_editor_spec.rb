@@ -8,8 +8,18 @@ describe 'Editing a Bitmap' do
       end
 
       def run
-        @image = WHITE_IMAGE
-        exit if @input.gets == 'X'
+        command = @input.gets
+        width = command.split(' ')[1].to_i
+        height = command.split(' ')[2].to_i
+        @image = white_image(width, height)
+        exit if command == 'X'
+      end
+
+      def white_image(width, height)
+        white_rows = Array.new(width) { '0' }
+        white_image = Array.new(height) { white_rows }
+
+        white_image
       end
     end
 
@@ -40,6 +50,14 @@ describe 'Editing a Bitmap' do
       @editor.run
 
       expect(@editor.image).to be_white_image(2, 2)
+    end
+
+    it 'generates a white image of any size' do
+      allow(@input).to receive(:gets).and_return 'I 3 4'
+
+      @editor.run
+
+      expect(@editor.image).to be_white_image(3, 4)
     end
 
     RSpec::Matchers.define :be_white_image do |width, height|
