@@ -1,7 +1,7 @@
 describe 'Editing a Bitmap' do
   class BitmapEditor
     attr_reader :image
-    def initialize(input, output = nil)
+    def initialize(input, output)
       @input = input
     end
 
