@@ -9,18 +9,25 @@ describe 'Editing a Bitmap' do
 
     def run
       command = @input.gets
-      if command.split(' ')[0] == 'I'
-        width = command.split(' ')[1].to_i
-        height = command.split(' ')[2].to_i
+      type, args = parse command
+      if type == 'I'
+        width = args[0].to_i
+        height = args[1].to_i
         @image = white_image(width, height)
       end
       to_string = @image.map { |row| row.join }.join("\n")
-      @output.puts to_string if command.split[0] == 'S'
+      @output.puts to_string if type == 'S'
  
-      exit if command == 'X'
+      exit if type == 'X'
     end
 
     private
+
+    def parse command 
+      type, *args = command.split ' '
+
+      return type, args
+    end
 
     def white_image(width, height)
       white_rows = Array.new(width) { 'O' }
