@@ -3,13 +3,18 @@ describe 'Editing a Bitmap' do
     attr_reader :image
     def initialize(input, output)
       @input = input
+      @output = output
     end
 
     def run
       command = @input.gets
-      width = command.split(' ')[1].to_i
-      height = command.split(' ')[2].to_i
-      @image = white_image(width, height)
+      if command.split(' ')[0] == 'I'
+        width = command.split(' ')[1].to_i
+        height = command.split(' ')[2].to_i
+        @image = white_image(width, height)
+      end
+      @output.puts "OOO\nOOO" if command.split[0] == 'S'
+ 
       exit if command == 'X'
     end
 
@@ -80,6 +85,14 @@ describe 'Editing a Bitmap' do
   end
 
   context "when a 'show contents' command is received" do
-    it 'prints the image to the output'
+    it 'displays the contents of the image' do
+      input = double :input
+      allow(input).to receive(:gets).and_return 'I 3 2', 'S'
+      io_output = double(:output)
+      expect(io_output).to receive(:puts).with("OOO\nOOO")
+      editor = BitmapEditor.new(input, io_output)
+
+      2.times { editor.run }
+    end 
   end
 end
