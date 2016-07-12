@@ -35,12 +35,9 @@ describe 'Bitmap Editor' do
 
     RSpec::Matchers.define :be_white_image do |width, height|
       match do |image|
-        white = 'O'
-        white_image = Array.new(height) do
-           Array.new(width) { 'O' }
-        end
-
-        image == white_image
+        dimensions = { width: width, height: height }
+        image ==
+          BitmapEditor::BitmapImage.white(dimensions).image
       end
 
       failure_message do |actual|
