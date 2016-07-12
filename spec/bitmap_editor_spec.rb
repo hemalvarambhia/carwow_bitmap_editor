@@ -154,27 +154,27 @@ describe 'Editing a Bitmap' do
   end
 
   context "when a 'colour pixel' command is received" do
-    it 'assigns a pixel the colour specified' do
-      input = double :input
-      io_output = double :output
-      allow(input).to receive(:gets).and_return 'I 5 6', 'L 2 3 A'
-      editor = BitmapEditor.new(input, io_output)
+    before :each do
+      @input = double :input
+      @output = double :output
+      @editor = BitmapEditor.new(@input, @output)
+    end
 
-      2.times { editor.run }
+    it 'assigns a pixel the colour specified' do
+      allow(@input).to receive(:gets).and_return 'I 5 6', 'L 2 3 A'
+
+      2.times { @editor.run }
       
-      image = editor.image
+      image = @editor.image
       expect(image[2][1]).to eq 'A'
     end
 
     it 'assigns any pixel any colour' do
-      input = double :input
-      io_output = double :output
-      allow(input).to receive(:gets).and_return 'I 5 6', 'L 4 4 B'
-      editor = BitmapEditor.new(input, io_output)
+      allow(@input).to receive(:gets).and_return 'I 5 6', 'L 4 4 B'
 
-      2.times { editor.run }
+      2.times { @editor.run }
 
-      image = editor.image
+      image = @editor.image
       expect(image[3][3]).to eq 'B'
     end
   end
