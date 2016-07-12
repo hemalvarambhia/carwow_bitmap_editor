@@ -1,7 +1,7 @@
 require 'bitmap_editor'
 describe 'Bitmap Editor' do
   describe "executing 'colour vertical segment' command" do
-    it 'colours only the column specified between two given rows' do
+    it 'assigns a colour to a given vertical segment' do
       input = double :input
       allow(input).to receive :print
       io_output = double(:output).as_null_object
