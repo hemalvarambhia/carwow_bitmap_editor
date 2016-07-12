@@ -43,11 +43,12 @@ class BitmapEditor
   end
 
   def assign_colour args
-    col_index = args[0].to_i - 1
-    row_index = args[1].to_i - 1
-    color = args[2]
-    @bitmap_image.assign_colour(
-      row: row_index, column: col_index, colour: color)
+    params = {
+      column: args.first.to_i - 1,
+      row: args[1].to_i - 1,
+      colour: args.last
+    }
+    @bitmap_image.assign_colour params
   end
 
   def show_contents
