@@ -105,6 +105,15 @@ describe 'Editing a Bitmap' do
       @editor = BitmapEditor.new(@input, @output)
     end
 
+    context 'when there is no image' do
+      it 'does not assign a colour' do
+        allow(@input).to receive(:gets).and_return 'L 4 4'
+
+        image = @editor.image
+        expect(image).to be_empty
+      end
+    end
+
     it 'assigns a pixel the colour specified' do
       allow(@input).to receive(:gets).and_return 'I 5 6', 'L 2 3 A'
 
