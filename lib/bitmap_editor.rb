@@ -17,8 +17,8 @@ class BitmapEditor
     assign_colour(args) if type == 'L'
     show_contents if type == 'S'
     if type == 'V'
-      (3..6).each do |row| 
-        assign_colour([2, row, 'W']) 
+      (args[1].to_i..args[2].to_i).each do |row| 
+        assign_colour([args[0].to_i, row, args.last]) 
       end
     end
 
