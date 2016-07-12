@@ -140,5 +140,16 @@ describe 'Editing a Bitmap' do
       image = @editor.image
       expect(image[3][3]).to eq 'B'
     end
+
+    it 'leaves all other pixels untouched' do
+      allow(@input).to receive(:gets).and_return 'I 2 2', 'L 1 1 B'
+
+      2.times { @editor.run }
+
+      image = @editor.image
+      expect(image[1][0]).to eq 'O'
+      expect(image[0][1]).to eq 'O'
+      expect(image[1][1]).to eq 'O'
+    end
   end
 end

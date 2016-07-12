@@ -12,8 +12,8 @@ class BitmapEditor
   def run
     command = @input.gets.strip
     type, args = parse command
-    initialise_image args if type == 'I'
-    assign_colour args if type == 'L'
+    initialise_image(args)if type == 'I'
+    assign_colour(args) if type == 'L'
     show_contents if type == 'S'
     exit if type == 'X'
   end
@@ -32,9 +32,10 @@ class BitmapEditor
   end
 
   def assign_colour args
-    col_index = args.first.to_i - 1
+    puts args
+    col_index = args[0].to_i - 1
     row_index = args[1].to_i - 1
-    color = args.last
+    color = args[2]
     @bitmap_image.assign_colour(
       row: row_index, column: col_index, colour: color)
   end
@@ -64,10 +65,9 @@ class BitmapEditor
     private
 
     def BitmapImage.white(width, height)
-      white_rows = Array.new(width) { 'O' }
-      white_image = Array.new(height) { white_rows }
-
-      white_image
+      Array.new(height) do 
+        Array.new(width) { 'O' } 
+      end
     end
   end
 end
