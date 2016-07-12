@@ -56,8 +56,6 @@ class BitmapEditor
   end
 
   class BitmapImage
-    attr_reader :image
-
     def BitmapImage.white(dimensions)
       pixels = Array.new(dimensions[:height]) do 
         Array.new(dimensions[:width]) { 'O' } 
@@ -66,18 +64,22 @@ class BitmapEditor
     end
     
     def initialize(pixels)
-      @image = pixels
+      @pixels = pixels
+    end
+
+    def image
+      @pixels
     end
 
     def assign_colour(params)
       row = params[:row]
       column = params[:column]
       colour = params[:colour]
-      @image[row][column] = colour
+      @pixels[row][column] = colour
     end
 
     def to_s
-      @image.map { |row| row.join }.join("\n")
+      @pixels.map { |row| row.join }.join("\n")
     end
   end
 end
