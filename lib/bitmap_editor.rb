@@ -1,6 +1,8 @@
+require 'forwardable'
 class BitmapEditor
-  attr_reader :image
-
+  extend Forwardable
+  def_delegator :@bitmap_image, :image
+  
   def initialize(input, output)
     @input = input
     @output = output
@@ -22,10 +24,6 @@ class BitmapEditor
     @output.puts @bitmap_image.to_s if type == 'S'
 
     exit if type == 'X'
-  end
-
-  def image
-    @bitmap_image.image
   end
 
   private
