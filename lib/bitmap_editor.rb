@@ -65,8 +65,7 @@ class BitmapEditor
     end
     
     def initialize(pixels)
-      @image = pixels ||
-               BitmapImage.white_image(dimensions[:width], dimensions[:height])
+      @image = pixels
     end
 
     def assign_colour(params)
