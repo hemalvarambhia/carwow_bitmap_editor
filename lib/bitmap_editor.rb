@@ -10,6 +10,7 @@ class BitmapEditor
   end
 
   def run
+    @input.print '> '
     command = @input.gets.strip
     type, args = parse command
     initialise_image(args)if type == 'I'

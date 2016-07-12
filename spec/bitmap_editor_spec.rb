@@ -1,8 +1,12 @@
 require 'bitmap_editor'
 describe 'Editing a Bitmap' do
+  before :each do
+    @input = double :input
+    allow(@input).to receive :print
+  end
+
   context 'when an exit command is received' do
     before :each do
-      @input = double :input
       @output = double(:output).as_null_object
       @editor = BitmapEditor.new(@input, @output)
     end
@@ -24,7 +28,6 @@ describe 'Editing a Bitmap' do
 
   context 'when an initialize command is received' do
     before :each do
-      @input = double :input
       @output = double(:output).as_null_object
       @editor = BitmapEditor.new @input, @output
     end
@@ -73,7 +76,6 @@ describe 'Editing a Bitmap' do
 
   context "when a 'show contents' command is received" do
     before :each do
-      @input = double :input
       @output = double :output
       @editor = BitmapEditor.new(@input, @output)
     end
@@ -111,7 +113,6 @@ describe 'Editing a Bitmap' do
 
   context "when a 'colour pixel' command is received" do
     before :each do
-      @input = double :input
       @output = double :output
       @editor = BitmapEditor.new(@input, @output)
     end
