@@ -54,8 +54,10 @@ describe 'Editing a Bitmap' do
     RSpec::Matchers.define :be_white_image do |width, height|
       match do |image|
         white = 'O' 
-        columns = Array.new(width) { white }
-     	white_image = Array.new(height) { columns }
+     	white_image = Array.new(height) do
+           Array.new(width) { 'O' } 
+        end
+
         image == white_image
       end
 
