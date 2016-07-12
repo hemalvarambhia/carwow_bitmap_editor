@@ -32,7 +32,6 @@ class BitmapEditor
   end
 
   def assign_colour args
-    puts args
     col_index = args[0].to_i - 1
     row_index = args[1].to_i - 1
     color = args[2]
