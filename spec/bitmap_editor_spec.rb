@@ -83,6 +83,15 @@ describe 'Editing a Bitmap' do
       expect { @editor.run }.not_to raise_error
     end
 
+    context 'when there is no image' do
+      it 'displays nothing' do
+        allow(@input).to receive(:gets).and_return 'S'
+      	expect(@output).to receive(:puts).with ""
+
+        @editor.run
+      end
+    end
+
     it 'displays the contents of the image' do
       allow(@input).to receive(:gets).and_return 'I 3 2', 'S'
       expect(@output).to receive(:puts).with("OOO\nOOO")
