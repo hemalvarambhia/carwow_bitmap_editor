@@ -5,11 +5,11 @@ describe 'Bitmap Editor' do
       @input = double :input
       allow(@input).to receive :print
       @output = double(:output).as_null_object
+      @editor = BitmapEditor.new(@input, @output)
     end
 
     it 'assigns a colour to a given vertical segment' do
       allow(@input).to receive(:gets).and_return 'I 5 6', 'V 2 3 6 W'
-      @editor = BitmapEditor.new(@input, @output)
 
       2.times { @editor.run }
 
@@ -20,7 +20,6 @@ describe 'Bitmap Editor' do
 
     it 'assigns a colour to any vertical segment' do
       allow(@input).to receive(:gets).and_return 'I 5 6', 'V 5 1 3 W'
-      @editor = BitmapEditor.new(@input, @output)
 
       2.times { @editor.run }
 
