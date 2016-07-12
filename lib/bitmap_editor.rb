@@ -16,11 +16,7 @@ class BitmapEditor
     initialise_image(args)if type == 'I'
     assign_colour(args) if type == 'L'
     show_contents if type == 'S'
-    if type == 'V'
-      (args[1].to_i..args[2].to_i).each do |row| 
-        assign_colour([args[0].to_i, row, args.last]) 
-      end
-    end
+    vertically_assign_colour(args) if type == 'V' 
 
     exit if type == 'X'
   end
@@ -36,6 +32,13 @@ class BitmapEditor
   def initialise_image args
     @bitmap_image = BitmapImage.new(
        width: args.first.to_i, height: args.last.to_i)
+  end
+
+  def vertically_assign_colour args
+    rows = args[1].to_i..args[2].to_i
+    rows.each do |row|
+      assign_colour([args[0].to_i, row, args.last])
+    end
   end
 
   def assign_colour args
