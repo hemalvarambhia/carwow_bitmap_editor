@@ -13,7 +13,7 @@ class BitmapEditor
     @input.print '> '
     command = @input.gets.strip
     type, args = parse command
-    initialise_image(args)if type == 'I'
+    initialise_image(args) if type == 'I'
     assign_colour(args) if type == 'L'
     show_contents if type == 'S'
     vertically_assign_colour(args) if type == 'V' 
