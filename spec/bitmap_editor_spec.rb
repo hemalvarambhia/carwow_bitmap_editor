@@ -149,9 +149,8 @@ describe 'Editing a Bitmap' do
       2.times { @editor.run }
 
       image = @editor.image
-      expect(image[1][0]).to eq 'O'
-      expect(image[0][1]).to eq 'O'
-      expect(image[1][1]).to eq 'O'
+      unaffected = [ image[0][1], image[1][0], image[1][1] ]
+      expect(unaffected).to all eq 'O'
     end
   end
 end
