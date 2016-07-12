@@ -1,12 +1,9 @@
 require 'bitmap_editor'
-describe 'Editing a Bitmap' do
-  before :each do
-    @input = double :input
-    allow(@input).to receive :print
-  end
-
-  context "when a 'colour pixel' command is received" do
+describe 'Bitmap Editor' do
+  describe "executing the 'colour pixel' command" do
     before :each do
+     @input = double :input
+      allow(@input).to receive :print
       @output = double :output
       @editor = BitmapEditor.new(@input, @output)
     end
