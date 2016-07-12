@@ -4,7 +4,7 @@ class BitmapEditor
   def initialize(input, output)
     @input = input
     @output = output
-    @image = []
+    @bitmap_image = BitmapImage.new(width: 0, height: 0)
   end
 
   def run
@@ -24,6 +24,10 @@ class BitmapEditor
     exit if type == 'X'
   end
 
+  def image
+    @bitmap_image.image
+  end
+
   private
 
   def parse command
@@ -33,24 +37,40 @@ class BitmapEditor
   end
 
   def initialize_image(dimensions)
-    @image = white_image(dimensions[:width], dimensions[:height])
-  end
-
-  def white_image(width, height)
-    white_rows = Array.new(width) { 'O' }
-    white_image = Array.new(height) { white_rows }
-
-    white_image
+    @bitmap_image = BitmapImage.new dimensions
   end
 
   def image_as_string
-    @image.map { |row| row.join }.join("\n")
+    @bitmap_image.to_s
   end
 
   def assign_colour(params)
-    row = params[:row]
-    column = params[:column]
-    colour = params[:colour]
-    @image[row][column] = colour
+    @bitmap_image.assign_colour params
+  end
+
+  class BitmapImage
+    attr_reader :image
+
+    def initialize(dimensions)
+      @image = white_image(dimensions[:width], dimensions[:height])
+    end
+
+    def assign_colour(params)
+      row = params[:row]
+      column = params[:column]
+      colour = params[:colour]
+      @image[row][column] = colour
+    end
+
+    def to_s
+      @image.map { |row| row.join }.join("\n")
+    end
+
+    def white_image(width, height)
+      white_rows = Array.new(width) { 'O' }
+      white_image = Array.new(height) { white_rows }
+
+      white_image
+    end
   end
 end
