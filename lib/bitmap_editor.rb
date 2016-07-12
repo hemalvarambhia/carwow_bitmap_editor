@@ -35,9 +35,10 @@ class BitmapEditor
   end
 
   def vertically_assign_colour args
-    rows = args[1].to_i..args[2].to_i
+    rows = (args[1]..args[2]).map{|i| i.to_i}
     rows.each do |row|
-      assign_colour([args[0].to_i, row, args.last])
+      column, colour = args.first.to_i, args.last
+      assign_colour([column, row, colour])
     end
   end
 
