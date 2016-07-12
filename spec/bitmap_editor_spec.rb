@@ -13,7 +13,11 @@ describe 'Editing a Bitmap' do
       initialize_image(
         width: args.first.to_i, height: args.last.to_i) if type == 'I'
 
-      @image[2][1] = 'A' if type == 'L' 
+      col_index = args.first.to_i - 1
+      row_index = args[1].to_i - 1
+      color = args.last
+      assign_colour(
+        row: row_index, column: col_index, colour: color) if type =='L'
 
       @output.puts image_as_string if type == 'S'
  
@@ -42,6 +46,13 @@ describe 'Editing a Bitmap' do
     def image_as_string
       @image.map { |row| row.join }.join("\n")
     end
+
+    def assign_colour(params)
+      row = params[:row]
+      column = params[:column]
+      colour = params[:colour]
+      @image[row][column] = colour
+    end 
   end
 
   context 'when an exit command is received' do
@@ -143,7 +154,7 @@ describe 'Editing a Bitmap' do
   end
 
   context "when a 'colour pixel' command is received" do
-    it 'colours the pixel the color specified' do
+    it 'assigns a pixel the colour specified' do
       input = double :input
       io_output = double :output
       allow(input).to receive(:gets).and_return 'I 5 6', 'L 2 3 A'
@@ -153,6 +164,18 @@ describe 'Editing a Bitmap' do
       
       image = editor.image
       expect(image[2][1]).to eq 'A'
+    end
+
+    it 'assigns any pixel any colour' do
+      input = double :input
+      io_output = double :output
+      allow(input).to receive(:gets).and_return 'I 5 6', 'L 4 4 B'
+      editor = BitmapEditor.new(input, io_output)
+
+      2.times { editor.run }
+
+      image = editor.image
+      expect(image[3][3]).to eq 'B'
     end
   end
 end
