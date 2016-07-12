@@ -10,16 +10,16 @@ class BitmapEditor
   def run
     command = @input.gets.strip
     type, args = parse command
-    initialize_image(
-      width: args.first.to_i, height: args.last.to_i) if type == 'I'
+    @bitmap_image = BitmapImage.new(
+       width: args.first.to_i, height: args.last.to_i) if type == 'I'
 
     col_index = args.first.to_i - 1
     row_index = args[1].to_i - 1
     color = args.last
-    assign_colour(
+    @bitmap_image.assign_colour(
       row: row_index, column: col_index, colour: color) if type =='L'
 
-    @output.puts image_as_string if type == 'S'
+    @output.puts @bitmap_image.to_s if type == 'S'
 
     exit if type == 'X'
   end
@@ -34,18 +34,6 @@ class BitmapEditor
     type, *args = command.split ' '
 
     return type, args
-  end
-
-  def initialize_image(dimensions)
-    @bitmap_image = BitmapImage.new dimensions
-  end
-
-  def image_as_string
-    @bitmap_image.to_s
-  end
-
-  def assign_colour(params)
-    @bitmap_image.assign_colour params
   end
 
   class BitmapImage
