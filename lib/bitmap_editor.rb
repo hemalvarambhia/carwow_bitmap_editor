@@ -38,7 +38,7 @@ class BitmapEditor
     attr_reader :image
 
     def initialize(dimensions)
-      @image = white_image(dimensions[:width], dimensions[:height])
+      @image = BitmapImage.white(dimensions[:width], dimensions[:height])
     end
 
     def assign_colour(params)
@@ -52,7 +52,9 @@ class BitmapEditor
       @image.map { |row| row.join }.join("\n")
     end
 
-    def white_image(width, height)
+    private
+
+    def BitmapImage.white(width, height)
       white_rows = Array.new(width) { 'O' }
       white_image = Array.new(height) { white_rows }
 
