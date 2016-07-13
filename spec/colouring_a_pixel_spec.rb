@@ -2,10 +2,8 @@ require 'bitmap_editor'
 describe 'Bitmap Editor' do
   describe "executing the 'colour pixel' command" do
     before :each do
-     @input = double :input
-      allow(@input).to receive :print
-      @output = double :output
-      @editor = BitmapEditor.new(@input, @output)
+      @input = double(:input, print: nil)
+      @editor = BitmapEditor.new(@input, nil)
     end
 
     context 'when there is no image' do

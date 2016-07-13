@@ -2,10 +2,8 @@ require 'bitmap_editor'
 describe 'Bitmap Editor' do
   describe "executing 'colour vertical segment' command" do
     before :each do
-      @input = double :input
-      allow(@input).to receive :print
-      @output = double(:output).as_null_object
-      @editor = BitmapEditor.new(@input, @output)
+      @input = double(:input, print: nil)
+      @editor = BitmapEditor.new(@input, nil)
     end
 
     it 'assigns a colour to a given vertical segment' do
