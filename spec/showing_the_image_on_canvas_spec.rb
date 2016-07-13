@@ -15,15 +15,6 @@ describe 'Bitmap Editor' do
       expect { @editor.run }.not_to raise_error
     end
 
-    context 'when there is no image' do
-      it 'displays nothing' do
-        allow(@input).to receive(:gets).and_return 'S'
-        expect(@output).to receive(:puts).with @canvas
-
-        @editor.run
-      end
-    end
-
     it 'displays any image on the canvas' do
       allow(@input).to receive(:gets).and_return 'S'
       expect(@output).to receive(:puts).with(@canvas)
