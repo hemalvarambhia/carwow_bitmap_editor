@@ -1,7 +1,7 @@
 require 'bitmap_editor'
 describe 'Bitmap Editor' do
-  describe "executing a 'colour horizontal segment' command" do
-    it 'colours only the horizontal segment specified' do
+  describe "drawing a horizonal line" do
+    it 'paints only the horizontal line specified' do
       input = double(:input, print: nil)
       allow(input).to receive(:gets).and_return 'I 5 3', 'H 1 5 2 W'
       editor = BitmapEditor.new(input, nil)
@@ -12,7 +12,7 @@ describe 'Bitmap Editor' do
       expect(horizontal_segment).to eq ['W', 'W', 'W', 'W', 'W']
     end
 
-    it 'colours any horizontal segment' do
+    it 'paints a horizontal line anywhere' do
       input = double(:input, print: nil)
       allow(input).to receive(:gets).and_return 'I 5 3', 'H 1 2 3 W'
       editor = BitmapEditor.new(input, nil)
@@ -23,7 +23,7 @@ describe 'Bitmap Editor' do
       expect(horizontal_segment).to eq ['W', 'W']
     end
 
-    it 'paints a horizontal line any colour' do
+    it 'paints a horizontal line anywhere any colour' do
       input = double(:input, print: nil)
       allow(input).to receive(:gets).and_return 'I 5 3', 'H 1 2 3 Z'
       editor = BitmapEditor.new(input, nil)
