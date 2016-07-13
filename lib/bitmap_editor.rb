@@ -54,7 +54,7 @@ class BitmapEditor
       row: args[1].to_i - 1,
       colour: args.last
     }
-    @bitmap_image.assign_colour params
+    @bitmap_image.paint params
   end
 
   def show_contents
@@ -93,7 +93,7 @@ class BitmapEditor
       @pixels.size
     end
 
-    def assign_colour(params)
+    def paint(params)
       row = params[:row]
       column = params[:column]
       colour = params[:colour]
