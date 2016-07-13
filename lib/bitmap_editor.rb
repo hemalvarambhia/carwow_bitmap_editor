@@ -17,7 +17,8 @@ class BitmapEditor
     assign_colour(args) if type == 'L'
     show_contents if type == 'S'
     vertically_assign_colour(args) if type == 'V' 
-
+    clear if type == 'C'
+    
     exit if type == 'X'
   end
 
@@ -53,6 +54,14 @@ class BitmapEditor
 
   def show_contents
     @output.puts @bitmap_image.to_s
+  end
+
+  def clear
+    original_dimensions = {
+      height: @bitmap_image.image.size,
+      width: @bitmap_image.image.sample.size
+    }
+    @bitmap_image = BitmapImage.white(original_dimensions)
   end
 
   class BitmapImage
