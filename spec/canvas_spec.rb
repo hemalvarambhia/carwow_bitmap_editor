@@ -9,7 +9,7 @@ describe 'A Canvas' do
 
     RSpec::Matchers.define :be_width do |expected_width|
       match do |image|
-        image.sample.size == expected_width
+        image.all? { |row| row.size == expected_width }
       end
     end
     
