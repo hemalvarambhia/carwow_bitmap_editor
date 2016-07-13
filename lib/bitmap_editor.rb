@@ -17,11 +17,7 @@ class BitmapEditor
     paint(args) if type == 'L'
     show_contents if type == 'S'
     draw_vertical_line(args) if type == 'V'
-    if type == 'H'
-      (args.first..args[1]).map {|column| column.to_i}.each do |column|
-        paint([column, args[2].to_i, args.last])
-      end
-    end
+    draw_horizontal_line(args) if type == 'H'
     clear if type == 'C'
     
     exit if type == 'X'
@@ -44,6 +40,13 @@ class BitmapEditor
     rows.each do |row|
       column, colour = args.first.to_i, args.last
       paint([column, row, colour])
+    end
+  end
+
+  def draw_horizontal_line args
+    line = (args.first..args[1]).map {|column| column.to_i}
+    line.each do |column|
+       paint([column, args[2].to_i, args.last])
     end
   end
 
