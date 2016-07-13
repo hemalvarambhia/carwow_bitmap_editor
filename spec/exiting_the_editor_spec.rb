@@ -1,19 +1,19 @@
 require 'bitmap_editor'
 describe 'Bitmap Editor' do
-  describe 'executing the exit command' do
+  describe 'exiting the editor' do
     before :each do
       @input = double(:input, print: nil)
       @editor = BitmapEditor.new(@input, nil)
     end
 
-    it 'exits' do
+    it 'terminates the program' do
       allow(@input).to receive(:gets).and_return 'X'
 
       expect { @editor.run }.to raise_error SystemExit
     end
 
-    context 'when the exit command contains a new line' do
-      it 'exits' do
+    context 'when the command contains a new line' do
+      it 'terminates the program' do
         allow(@input).to receive(:gets).and_return "X\n"
 
         expect { @editor.run }.to raise_error SystemExit
