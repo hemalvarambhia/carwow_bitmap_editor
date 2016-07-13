@@ -11,5 +11,16 @@ describe 'Bitmap Editor' do
       horizontal_segment = image[1][0..-1]
       expect(horizontal_segment).to eq ['W', 'W', 'W', 'W', 'W']
     end
+
+    it 'colours any horizontal segment' do
+      input = double(:input, print: nil)
+      allow(input).to receive(:gets).and_return 'I 5 3', 'H 1 2 3 W'
+      editor = BitmapEditor.new(input, nil)
+      3.times { editor.run }
+
+      image = editor.image
+      horizontal_segment = image[2][0..1]
+      expect(horizontal_segment).to eq ['W', 'W']
+    end
   end
 end

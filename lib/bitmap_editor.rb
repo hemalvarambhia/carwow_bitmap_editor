@@ -3,10 +3,10 @@ class BitmapEditor
   extend Forwardable
   def_delegator :@canvas, :image
   
-  def initialize(input, output)
+  def initialize(input, output, canvas = Canvas.new)
     @input = input
     @output = output
-    @canvas = Canvas.new
+    @canvas = canvas
   end
 
   def run
@@ -18,8 +18,8 @@ class BitmapEditor
     show_contents if type == 'S'
     draw_vertical_line(args) if type == 'V'
     if type == 'H'
-      (1..5).each do |column|
-        paint([column, 2, 'W'])
+      (args.first..args[1]).map {|column| column.to_i}.each do |column|
+        paint([column, args[2].to_i, 'W'])
       end
     end
     clear if type == 'C'
