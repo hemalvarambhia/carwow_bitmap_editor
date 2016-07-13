@@ -14,12 +14,12 @@ class BitmapEditor
     command = @input.gets.strip
     type, args = parse command
     initialise_image(args) if type == 'I'
-    assign_colour(args) if type == 'L'
+    paint(args) if type == 'L'
     show_contents if type == 'S'
     vertically_assign_colour(args) if type == 'V'
     if type == 'H'
       (1..5).each do |column|
-        assign_colour([column, 2, 'W'])
+        paint([column, 2, 'W'])
       end
     end
     clear if type == 'C'
@@ -44,11 +44,11 @@ class BitmapEditor
     rows = (args[1]..args[2]).map{|i| i.to_i}
     rows.each do |row|
       column, colour = args.first.to_i, args.last
-      assign_colour([column, row, colour])
+      paint([column, row, colour])
     end
   end
 
-  def assign_colour args
+  def paint args
     params = {
       column: args.first.to_i - 1,
       row: args[1].to_i - 1,
