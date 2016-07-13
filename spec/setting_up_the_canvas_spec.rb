@@ -27,5 +27,14 @@ describe 'Bitmap Editor' do
 
       @editor.run
     end
+
+    context 'when the dimensions are out of bounds' do
+      it 'creates the smallest possible canvas' do
+        allow(@input).to receive(:gets).and_return 'I -1 -1'
+        expect(@canvas).to receive(:blank).with(width: 1, height: 1)
+
+        @editor.run
+      end
+    end
   end
 end
