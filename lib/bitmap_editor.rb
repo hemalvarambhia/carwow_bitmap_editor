@@ -6,7 +6,7 @@ class BitmapEditor
   def initialize(input, output)
     @input = input
     @output = output
-    @bitmap_image = BitmapImage.white(width: 0, height: 0)
+    @bitmap_image = BitmapImage.new
   end
 
   def run
@@ -36,8 +36,10 @@ class BitmapEditor
   end
 
   def initialise_image args
-    @bitmap_image = BitmapImage.white(
-       width: args.first.to_i, height: args.last.to_i)
+    @bitmap_image.blank(
+      width: args.first.to_i,
+      height: args.last.to_i
+    )
   end
 
   def vertically_assign_colour args
@@ -66,19 +68,18 @@ class BitmapEditor
       height: @bitmap_image.height,
       width: @bitmap_image.width
     }
-    @bitmap_image = BitmapImage.white(original_dimensions)
+    @bitmap_image.blank(original_dimensions)
   end
 
   class BitmapImage
-    def BitmapImage.white(dimensions)
-      pixels = Array.new(dimensions[:height]) do 
+    def initialize(pixels = [])
+      @pixels = pixels
+    end
+
+    def blank(dimensions)
+      @pixels = Array.new(dimensions[:height]) do 
         Array.new(dimensions[:width]) { 'O' } 
       end
-      new pixels
-    end
-    
-    def initialize(pixels)
-      @pixels = pixels
     end
 
     def image
