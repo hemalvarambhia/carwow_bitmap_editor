@@ -58,8 +58,8 @@ class BitmapEditor
 
   def clear
     original_dimensions = {
-      height: @bitmap_image.image.size,
-      width: @bitmap_image.image.sample.size
+      height: @bitmap_image.height,
+      width: @bitmap_image.width
     }
     @bitmap_image = BitmapImage.white(original_dimensions)
   end
@@ -78,6 +78,14 @@ class BitmapEditor
 
     def image
       @pixels
+    end
+
+    def width
+      @pixels.sample.size
+    end
+
+    def height
+      @pixels.size
     end
 
     def assign_colour(params)
