@@ -57,7 +57,7 @@ class BitmapEditor
   end
 
   def show_contents
-    @output.puts @canvas.to_s
+    @output.puts @canvas
   end
 
   def clear

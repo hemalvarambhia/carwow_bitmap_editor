@@ -4,7 +4,8 @@ describe 'Bitmap Editor' do
     before :each do
       @input = double(:input, print: nil)
       @output = double :output
-      @editor = BitmapEditor.new(@input, @output)
+      @canvas = double(:canvas, blank: nil)
+      @editor = BitmapEditor.new(@input, @output, @canvas)
     end
 
     it 'continues to run' do
@@ -17,24 +18,17 @@ describe 'Bitmap Editor' do
     context 'when there is no image' do
       it 'displays nothing' do
         allow(@input).to receive(:gets).and_return 'S'
-        expect(@output).to receive(:puts).with ""
+        expect(@output).to receive(:puts).with @canvas
 
         @editor.run
       end
     end
 
-    it 'displays the contents of the image' do
-      allow(@input).to receive(:gets).and_return 'I 3 2', 'S'
-      expect(@output).to receive(:puts).with("OOO\nOOO")
-
-      2.times { @editor.run }
-    end
-
     it 'displays the contents of any image' do
-      allow(@input).to receive(:gets).and_return 'I 4 4', 'S'
-      expect(@output).to receive(:puts).with("OOOO\nOOOO\nOOOO\nOOOO")
+      allow(@input).to receive(:gets).and_return 'S'
+      expect(@output).to receive(:puts).with(@canvas)
 
-      2.times { @editor.run }
+      @editor.run
     end
   end
 end
