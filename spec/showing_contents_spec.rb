@@ -1,12 +1,8 @@
 require 'bitmap_editor'
 describe 'Bitmap Editor' do
-  before :each do
-    @input = double :input
-    allow(@input).to receive :print
-  end
-
   context "executing the 'show contents' command" do
     before :each do
+      @input = double(:input, print: nil)
       @output = double :output
       @editor = BitmapEditor.new(@input, @output)
     end
