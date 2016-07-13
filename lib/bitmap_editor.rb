@@ -16,7 +16,12 @@ class BitmapEditor
     initialise_image(args) if type == 'I'
     assign_colour(args) if type == 'L'
     show_contents if type == 'S'
-    vertically_assign_colour(args) if type == 'V' 
+    vertically_assign_colour(args) if type == 'V'
+    if type == 'H'
+      (1..5).each do |column|
+        assign_colour([column, 2, 'W'])
+      end
+    end
     clear if type == 'C'
     
     exit if type == 'X'
