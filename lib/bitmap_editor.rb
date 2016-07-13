@@ -1,12 +1,12 @@
 require 'forwardable'
 class BitmapEditor
   extend Forwardable
-  def_delegator :@bitmap_image, :image
+  def_delegator :@canvas, :image
   
   def initialize(input, output)
     @input = input
     @output = output
-    @bitmap_image = Canvas.new
+    @canvas = Canvas.new
   end
 
   def run
@@ -36,10 +36,7 @@ class BitmapEditor
   end
 
   def blank_canvas args
-    @bitmap_image.blank(
-      width: args.first.to_i,
-      height: args.last.to_i
-    )
+    @canvas.blank(width: args.first.to_i, height: args.last.to_i)
   end
 
   def draw_vertical_line args
@@ -56,19 +53,19 @@ class BitmapEditor
       row: args[1].to_i - 1,
       colour: args.last
     }
-    @bitmap_image.paint params
+    @canvas.paint params
   end
 
   def show_contents
-    @output.puts @bitmap_image.to_s
+    @output.puts @canvas.to_s
   end
 
   def clear
     original_dimensions = {
-      height: @bitmap_image.height,
-      width: @bitmap_image.width
+      height: @canvas.height,
+      width: @canvas.width
     }
-    @bitmap_image.blank(original_dimensions)
+    @canvas.blank(original_dimensions)
   end
 
   class Canvas
