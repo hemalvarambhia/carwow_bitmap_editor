@@ -1,7 +1,17 @@
 require 'bitmap_editor'
 
 describe 'Bitmap Editor' do
-  describe 'executing the clear command' do
+  describe 'executing the clear command' do    
+    context 'when there is no image' do
+      it 'does nothing' do
+        input = double(:input, :print => nil)
+        allow(input).to receive(:gets).and_return 'C'
+        editor = BitmapEditor.new(input, nil)
+        
+        expect(editor.image).to be_empty
+      end
+    end
+
     it 'colours all pixels white' do
       input = double(:input, print: nil)
       allow(input).to receive(:gets).and_return 'I 4 3', 'V 1 1 3 W', 'C'
