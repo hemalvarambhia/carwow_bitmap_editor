@@ -1,6 +1,6 @@
 require 'bitmap_editor'
 describe 'Bitmap Editor' do
-  context "executing the 'show contents' command" do
+  context "displaying the image on the canvas" do
     before :each do
       @input = double(:input, print: nil)
       @output = double :output
@@ -24,7 +24,7 @@ describe 'Bitmap Editor' do
       end
     end
 
-    it 'displays the contents of any image' do
+    it 'displays any image on the canvas' do
       allow(@input).to receive(:gets).and_return 'S'
       expect(@output).to receive(:puts).with(@canvas)
 
