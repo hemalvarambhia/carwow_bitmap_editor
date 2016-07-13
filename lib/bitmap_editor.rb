@@ -19,7 +19,7 @@ class BitmapEditor
     draw_vertical_line(args) if type == 'V'
     if type == 'H'
       (args.first..args[1]).map {|column| column.to_i}.each do |column|
-        paint([column, args[2].to_i, 'W'])
+        paint([column, args[2].to_i, args.last])
       end
     end
     clear if type == 'C'
