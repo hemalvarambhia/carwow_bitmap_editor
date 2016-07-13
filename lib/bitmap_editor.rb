@@ -16,7 +16,7 @@ class BitmapEditor
     initialise_image(args) if type == 'I'
     paint(args) if type == 'L'
     show_contents if type == 'S'
-    vertically_assign_colour(args) if type == 'V'
+    draw_vertical_line(args) if type == 'V'
     if type == 'H'
       (1..5).each do |column|
         paint([column, 2, 'W'])
@@ -42,7 +42,7 @@ class BitmapEditor
     )
   end
 
-  def vertically_assign_colour args
+  def draw_vertical_line args
     rows = (args[1]..args[2]).map{|i| i.to_i}
     rows.each do |row|
       column, colour = args.first.to_i, args.last
