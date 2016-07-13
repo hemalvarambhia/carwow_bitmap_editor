@@ -8,12 +8,9 @@ describe 'Bitmap Editor' do
       editor = BitmapEditor.new(input, nil)
 
       3.times { editor.run }
-
       image = editor.image
       expect(editor.image).to be_white_image(4, 3)
     end
-
-    it 'does not change the dimensions of the image'
 
     RSpec::Matchers.define :be_white_image do |width, height|
       match do |image|
