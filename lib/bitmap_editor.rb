@@ -6,14 +6,14 @@ class BitmapEditor
   def initialize(input, output)
     @input = input
     @output = output
-    @bitmap_image = BitmapImage.new
+    @bitmap_image = Canvas.new
   end
 
   def run
     @input.print '> '
     command = @input.gets.strip
     type, args = parse command
-    initialise_image(args) if type == 'I'
+    blank_canvas(args) if type == 'I'
     paint(args) if type == 'L'
     show_contents if type == 'S'
     draw_vertical_line(args) if type == 'V'
@@ -35,7 +35,7 @@ class BitmapEditor
     return type, args
   end
 
-  def initialise_image args
+  def blank_canvas args
     @bitmap_image.blank(
       width: args.first.to_i,
       height: args.last.to_i
@@ -71,7 +71,7 @@ class BitmapEditor
     @bitmap_image.blank(original_dimensions)
   end
 
-  class BitmapImage
+  class Canvas
     def initialize(pixels = [])
       @pixels = pixels
     end
