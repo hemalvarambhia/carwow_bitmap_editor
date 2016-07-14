@@ -11,20 +11,11 @@ class BitmapEditor
     S - Show the contents of the current image
     X - Terminate the session"
 
-  def initialize(input, output, canvas = Canvas.new)
+  def initialize(input, commands)
     @input = input
     @output = output
     @canvas = canvas
-    @commands = {
-        'I' => SetupCanvas.new(@canvas),
-        'C' => ClearCanvas.new(@canvas),
-        'S' => DisplayImage.new(@output, @canvas),
-        'L' => ColourPixel.new(@canvas),
-        'V' => DrawVerticalLine.new(@canvas),
-        'H' => DrawHorizontalLine.new(@canvas),
-        'X' => ExitEditor.new,
-        '?' => Help.new(@output)
-    }
+    @commands = commands
   end
 
   def run
