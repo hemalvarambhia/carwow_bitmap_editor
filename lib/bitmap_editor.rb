@@ -86,14 +86,6 @@ class BitmapEditor
       @pixels
     end
 
-    def width
-      @pixels.sample.size
-    end
-
-    def height
-      @pixels.size
-    end
-
     def paint(params)
       row = params[:row]
       column = params[:column]
