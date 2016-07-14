@@ -47,7 +47,7 @@ describe 'A Canvas' do
 
   describe '#paint' do
     before :each do
-      @canvas.blank(width: 4, height: 3)
+      @canvas.blank(width: 2, height: 2)
     end
 
     it 'paints the given pixel a colour' do
@@ -57,15 +57,25 @@ describe 'A Canvas' do
     end
 
     it 'paints any pixel a colour' do
-      @canvas.paint(row: 1, column: 2, colour: 'H')  
+      @canvas.paint(row: 1, column: 1, colour: 'H')  
    
-      expect(@canvas.image[1][2]).to eq 'H'
+      expect(@canvas.image[1][1]).to eq 'H'
     end
 
     it 'paints any pixel any colour' do
-      @canvas.paint(row: 2, column: 2, colour: 'X')       
+      @canvas.paint(row: 1, column: 0, colour: 'X')       
 
-      expect(@canvas.image[2][2]).to eq 'X'
+      expect(@canvas.image[1][0]).to eq 'X'
+    end
+
+    it 'leaves all other pixels white' do
+      @canvas.paint(row: 1, column: 0, colour: 'X')
+
+      image = @canvas.image
+      untouched = [
+        image[0][0], image[0][1], image[1][1]
+      ]
+      expect(untouched).to all eq 'O'
     end
   end
 end
