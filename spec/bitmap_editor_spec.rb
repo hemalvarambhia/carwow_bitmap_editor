@@ -99,4 +99,17 @@ describe 'Bitmap Editor' do
 
     editor.run
   end
+
+  context 'when a supported command is invoked' do
+    it "invokes the 'help' command" do
+      help = double :help
+      expect(help).to receive(:run)
+      allow(@input).to receive(:gets).and_return 'U'
+      editor = BitmapEditor.new(
+        @input, Hash.new(help)
+      )
+
+      editor.run
+    end
+  end
 end
