@@ -111,6 +111,16 @@ class BitmapEditor
     end
   end
 
+  class ClearCanvas
+    def initialize canvas
+      @canvas = canvas
+    end
+
+    def run args
+      @canvas.clear
+    end
+  end
+
   class Canvas
     def initialize(pixels = [])
       @pixels = pixels
