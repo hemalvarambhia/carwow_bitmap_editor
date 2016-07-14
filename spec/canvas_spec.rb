@@ -24,6 +24,12 @@ describe 'A Canvas' do
 
       expect(@canvas.to_s).to eq "OOOO\nOOOO"
     end
+
+    it 'renders any set of pixels as a string' do
+      @canvas.blank(width: 3, height: 3)
+
+      expect(@canvas.to_s).to eq "OOO\nOOO\nOOO"
+    end
   end
 
   describe '#paint' do
