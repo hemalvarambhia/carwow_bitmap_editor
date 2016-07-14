@@ -12,23 +12,22 @@ class BitmapEditor
   def run
     @input.print '> '
     command = @input.gets.strip
-    type, args = parse command
+
+    execute command
+  end
+
+  private
+
+  def execute command
+    type, *args = command.split ' '
+
     blank_canvas(args) if type == 'I'
     paint(args) if type == 'L'
     show_contents if type == 'S'
     draw_vertical_line(args) if type == 'V'
     draw_horizontal_line(args) if type == 'H'
     clear if type == 'C'
-    
     exit if type == 'X'
-  end
-
-  private
-
-  def parse command
-    type, *args = command.split ' '
-
-    return type, args
   end
 
   def blank_canvas args
