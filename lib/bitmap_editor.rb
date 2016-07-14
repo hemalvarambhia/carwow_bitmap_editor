@@ -96,6 +96,21 @@ class BitmapEditor
       @canvas.blank(width: width, height: height)    end
   end
 
+  class ColourPixel
+    def initialize canvas
+      @canvas = canvas
+    end
+
+    def run args
+      params = {
+          column: args.first.to_i - 1,
+          row: args[1].to_i - 1,
+          colour: args.last
+      }
+      @canvas.paint params
+    end
+  end
+
   class Canvas
     def initialize(pixels = [])
       @pixels = pixels
