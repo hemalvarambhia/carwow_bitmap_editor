@@ -174,6 +174,17 @@ class BitmapEditor
     end
   end
 
+  class DisplayImage
+    def initialize(output, canvas)
+      @output = output
+      @canvas = canvas
+    end
+
+    def run args
+      @output.puts @canvas
+    end
+  end
+
   class Canvas
     def initialize(pixels = [])
       @pixels = pixels
