@@ -5,8 +5,7 @@ Command pattern appears to be emerging in the `BitmapEditor`
 
 ###Clues###
    - executing particular methods based on the command type.
-     Could refactoring
-     conditional to polymorphic objects
+     Could refactor conditional to polymorphic objects
    - dimensions out of bounds tests were initially written in
      the `Canvas` spec but that meant canvas had more than one
      responsibility, so moved it to `BitmapEditor` spec. Now
