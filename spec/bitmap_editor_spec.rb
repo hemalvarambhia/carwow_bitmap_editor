@@ -1,6 +1,6 @@
 require 'bitmap_editor'
 describe 'Bitmap Editor' do
-  it 'supports a set up canvas command' do
+  it "supports a 'new canvas' command" do
     blank_canvas_command = double :set_up_canvas
     expect(blank_canvas_command).to receive(:run).with [ "2", "3" ]
     input = double(:input, print: nil)
