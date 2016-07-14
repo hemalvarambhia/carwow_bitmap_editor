@@ -3,7 +3,7 @@ describe 'Bitmap Editor' do
   describe "drawing a horizonal line" do
     before :each do
       @canvas = double(:canvas)
-      @editor = BitmapEditor::DrawHorizontalLine.new(@canvas)
+      @draw_horizontal_line = BitmapEditor::DrawHorizontalLine.new(@canvas)
     end
     
     it 'paints only the horizontal line specified' do
@@ -12,7 +12,7 @@ describe 'Bitmap Editor' do
           receive(:paint).with(row: 1, column: column, colour: 'W'))
       end
 
-      @editor.run  [1, 5, 2, 'W']
+      @draw_horizontal_line.run  [1, 5, 2, 'W']
     end
 
     it 'paints a horizontal line anywhere' do
@@ -21,7 +21,7 @@ describe 'Bitmap Editor' do
           receive(:paint).with(row: 2, column: column, colour: 'W'))
       end
 
-      @editor.run [1, 2, 3, 'W']
+      @draw_horizontal_line.run [1, 2, 3, 'W']
     end
 
     it 'paints a horizontal line anywhere any colour' do
@@ -30,7 +30,7 @@ describe 'Bitmap Editor' do
           receive(:paint).with(row: 2, column: column, colour: 'Z'))
       end
 
-      @editor.run [1, 2, 3, 'Z']
+      @draw_horizontal_line.run [1, 2, 3, 'Z']
     end
   end
 end

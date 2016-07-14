@@ -3,7 +3,7 @@ describe 'Bitmap Editor' do
   describe "drawing a vertical line" do
     before :each do
       @canvas = double(:canvas)
-      @editor = BitmapEditor::DrawVerticalLine.new(@canvas)
+      @draw_vertical_line = BitmapEditor::DrawVerticalLine.new(@canvas)
     end
 
     it 'draws a vertical line on the specified part' do
@@ -12,7 +12,7 @@ describe 'Bitmap Editor' do
           receive(:paint).with(column: 1, row: row, colour: 'W'))
       end
 
-      @editor.run [2, 3, 6, 'W']
+      @draw_vertical_line.run [2, 3, 6, 'W']
     end
 
     it 'draws a vertical line anywhere' do
@@ -21,7 +21,7 @@ describe 'Bitmap Editor' do
           receive(:paint).with(column: 4, row: row, colour: 'W'))
       end
 
-      @editor.run [5, 1, 3, 'W']
+      @draw_vertical_line.run [5, 1, 3, 'W']
     end
 
     it 'draws a vertical line anywhere in any colour' do
@@ -30,7 +30,7 @@ describe 'Bitmap Editor' do
           receive(:paint).with(column: 3, row: row, colour: 'H'))
       end
 
-      @editor.run [4, 2, 4, 'H']
+      @draw_vertical_line.run [4, 2, 4, 'H']
     end
   end
 end
