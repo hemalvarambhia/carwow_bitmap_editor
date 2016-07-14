@@ -4,6 +4,7 @@ describe 'A Canvas' do
     it 'creates a blank canvas with the specified dimensions' do
       canvas = BitmapEditor::Canvas.new
       image = canvas.blank(width: 3 ,height: 3)
+
       expect(image).to be_width(3).and be_height(3).and be_white
     end
 
