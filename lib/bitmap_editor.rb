@@ -121,6 +121,30 @@ class BitmapEditor
     end
   end
 
+  class DrawVerticalLine
+    def initialize canvas
+      @canvas = canvas
+    end
+
+    def run args
+      line = (args[1]..args[2]).map{|i| i.to_i}
+      line.each do |row|
+        column, colour = args.first.to_i, args.last
+        paint([column, row, colour])
+      end
+    end
+
+    private
+    def paint args
+      params = {
+          column: args.first.to_i - 1,
+          row: args[1].to_i - 1,
+          colour: args.last
+      }
+      @canvas.paint params
+    end
+  end
+
   class Canvas
     def initialize(pixels = [])
       @pixels = pixels
