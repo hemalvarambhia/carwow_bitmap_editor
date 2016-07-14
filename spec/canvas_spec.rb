@@ -8,6 +8,13 @@ describe 'A Canvas' do
       expect(image).to be_width(3).and be_height(3).and be_white
     end
 
+    it 'creates a blank canvas of any specified dimensions' do
+      canvas = BitmapEditor::Canvas.new
+      image = canvas.blank(width: 5 ,height: 4)
+
+      expect(image).to be_width(5).and be_height(4).and be_white
+    end
+
     RSpec::Matchers.define :be_width do |expected_width|
       match do |image|
         image.all? { |row| row.size == expected_width }
