@@ -77,4 +77,17 @@ describe 'Bitmap Editor' do
 
     editor.run
   end
+
+  it "supports an 'exit editor' command" do
+    exit_editor = double :exit_editor
+    expect(exit_editor).to receive(:run)
+    input = double(:input, print: nil)
+    allow(input).to receive(:gets).and_return 'X'
+    editor = BitmapEditor.new(
+        input,
+        { 'X' => exit_editor }
+    )
+
+    editor.run
+  end
 end
