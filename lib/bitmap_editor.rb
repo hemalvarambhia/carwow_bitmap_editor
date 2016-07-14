@@ -83,6 +83,19 @@ class BitmapEditor
     @output.puts HELP
   end
 
+  class SetupCanvas
+    def initialize(canvas)
+      @canvas = canvas
+    end
+
+    def run args
+      width = args.first.to_i < 1 ? 1 : args.first.to_i
+      height = args.last.to_i < 1 ? 1 : args.last.to_i
+      width = args.first.to_i > 250 ? 250 : width
+      height = args.last.to_i > 250 ? 250 : height
+      @canvas.blank(width: width, height: height)    end
+  end
+
   class Canvas
     def initialize(pixels = [])
       @pixels = pixels
