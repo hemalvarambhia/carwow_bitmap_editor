@@ -100,7 +100,7 @@ describe 'Bitmap Editor' do
     editor.run
   end
 
-  context 'when a supported command is invoked' do
+  context 'when an unsupported command is invoked' do
     it "invokes the 'help' command" do
       help = double :help
       expect(help).to receive(:run)
