@@ -90,4 +90,17 @@ describe 'Bitmap Editor' do
 
     editor.run
   end
+
+  it "supports a 'help' command" do
+    help = double :help
+    expect(help).to receive(:run)
+    input = double(:input, print: nil)
+    allow(input).to receive(:gets).and_return '?'
+    editor = BitmapEditor.new(
+        input,
+        { '?' => help }
+    )
+
+    editor.run
+  end
 end
