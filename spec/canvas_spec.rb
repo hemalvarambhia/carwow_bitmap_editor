@@ -43,4 +43,33 @@ describe 'A Canvas' do
       expect(canvas.to_s).to eq "OOOO\nOOOO"
     end
   end
+
+  describe '#paint' do
+    it 'paints the given pixel a colour' do
+      canvas = BitmapEditor::Canvas.new
+      canvas.blank(width: 4, height: 3)
+
+      canvas.paint(row: 0, column: 1, colour: 'H')
+
+      expect(canvas.image[0][1]).to eq 'H'
+    end
+
+    it 'paints any pixel a colour' do
+      canvas = BitmapEditor::Canvas.new
+      canvas.blank(width: 4, height: 3)      
+
+      canvas.paint(row: 1, column: 2, colour: 'H')  
+   
+      expect(canvas.image[1][2]).to eq 'H'
+    end
+
+    it 'paints any pixel any colour' do
+      canvas = BitmapEditor::Canvas.new
+      canvas.blank(width: 4, height: 3)
+
+      canvas.paint(row: 2, column: 2, colour: 'X')       
+
+      expect(canvas.image[2][2]).to eq 'X'
+    end
+  end
 end
