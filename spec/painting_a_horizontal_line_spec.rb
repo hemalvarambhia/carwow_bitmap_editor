@@ -1,9 +1,9 @@
-require 'bitmap_editor'
+require 'commands'
 describe 'Bitmap Editor' do
   describe "drawing a horizonal line" do
     before :each do
       @canvas = double(:canvas)
-      @draw_horizontal_line = BitmapEditor::DrawHorizontalLine.new(@canvas)
+      @draw_horizontal_line = Commands::DrawHorizontalLine.new(@canvas)
     end
     
     it 'paints only the horizontal line specified' do

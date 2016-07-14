@@ -1,9 +1,9 @@
-require 'bitmap_editor'
+require 'commands'
 describe 'Bitmap Editor' do
   describe "drawing a vertical line" do
     before :each do
       @canvas = double(:canvas)
-      @draw_vertical_line = BitmapEditor::DrawVerticalLine.new(@canvas)
+      @draw_vertical_line = Commands::DrawVerticalLine.new(@canvas)
     end
 
     it 'draws a vertical line on the specified part' do

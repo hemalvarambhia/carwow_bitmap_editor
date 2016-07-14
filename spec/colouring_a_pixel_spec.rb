@@ -1,9 +1,9 @@
-require 'bitmap_editor'
+require 'commands'
 describe 'Bitmap Editor' do
   describe 'colouring a pixel' do
     before :each do
       @canvas = double(:canvas, blank: nil)
-      @colour_pixel = BitmapEditor::ColourPixel.new(@canvas)
+      @colour_pixel = Commands::ColourPixel.new(@canvas)
     end
 
     it 'colours in the specified pixel' do

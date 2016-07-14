@@ -1,10 +1,10 @@
-require 'bitmap_editor'
+require 'commands'
 describe 'Bitmap Editor' do
   describe "displaying the image on the canvas" do
     before :each do
       @output = double :output
       @canvas = double(:canvas)
-      @display_image = BitmapEditor::DisplayImage.new(@output, @canvas)
+      @display_image = Commands::DisplayImage.new(@output, @canvas)
     end
 
     it 'displays any image on the canvas' do

@@ -1,9 +1,9 @@
-require 'bitmap_editor'
+require 'commands'
 describe 'Bitmap Editor' do
   describe 'setting up the canvas' do
     before :each do
       @canvas = double(:canvas)
-      @set_up_canvas = BitmapEditor::SetupCanvas.new @canvas
+      @set_up_canvas = Commands::SetupCanvas.new @canvas
     end
 
     it 'creates a white M x N canvas' do
