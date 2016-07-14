@@ -34,4 +34,13 @@ describe 'A Canvas' do
       end
     end
   end
+
+  describe '#to_s' do
+    it 'renders the pixels as a string' do
+      canvas = BitmapEditor::Canvas.new
+      canvas.blank(width: 4, height: 2)
+
+      expect(canvas.to_s).to eq "OOOO\nOOOO"
+    end
+  end
 end
