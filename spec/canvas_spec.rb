@@ -1,7 +1,7 @@
-require 'bitmap_editor'
+require 'canvas'
 describe 'A Canvas' do
   before :each do
-    @canvas = BitmapEditor::Canvas.new
+    @canvas = Painting::Canvas.new
   end
 
   describe '#blank' do
