@@ -78,4 +78,16 @@ describe 'A Canvas' do
       expect(untouched).to all eq 'O'
     end
   end
+
+  describe '#clear' do
+    it 'clears the canvas' do
+      @canvas.blank(width: 2, height: 2)    
+
+      @canvas.paint(row: 0, column: 0, colour: 'A')
+      @canvas.paint(row: 0, column: 1, colour: 'B')
+      @canvas.clear
+
+      expect(@canvas.image).to be_width(2).and be_height(2).and be_white
+    end
+  end
 end

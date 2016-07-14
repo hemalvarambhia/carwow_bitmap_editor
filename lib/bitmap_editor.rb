@@ -76,6 +76,7 @@ class BitmapEditor
     end
 
     def blank(dimensions)
+      @dimensions = dimensions
       @pixels = Array.new(dimensions[:height]) do 
         Array.new(dimensions[:width]) { 'O' } 
       end
@@ -98,6 +99,12 @@ class BitmapEditor
       column = params[:column]
       colour = params[:colour]
       @pixels[row][column] = colour
+    end
+
+    def clear
+      @pixels = Array.new(@dimensions[:height]) do
+         Array.new(@dimensions[:width]) { 'O' }
+      end
     end
 
     def to_s
