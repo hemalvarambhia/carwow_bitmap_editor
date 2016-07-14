@@ -77,9 +77,7 @@ class BitmapEditor
 
     def blank(dimensions)
       @dimensions = dimensions
-      @pixels = Array.new(dimensions[:height]) do 
-        Array.new(dimensions[:width]) { 'O' } 
-      end
+      white_pixels
     end
 
     def image
@@ -94,13 +92,19 @@ class BitmapEditor
     end
 
     def clear
-      @pixels = Array.new(@dimensions[:height]) do
-         Array.new(@dimensions[:width]) { 'O' }
-      end
+      white_pixels
     end
 
     def to_s
       @pixels.map { |row| row.join }.join("\n")
+    end
+
+    private
+
+    def white_pixels
+      @pixels = Array.new(@dimensions[:height]) do
+        Array.new(@dimensions[:width]) { 'O' }
+      end
     end
   end
 end
