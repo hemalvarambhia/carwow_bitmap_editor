@@ -67,11 +67,7 @@ class BitmapEditor
   end
 
   def clear
-    original_dimensions = {
-      height: @canvas.height,
-      width: @canvas.width
-    }
-    @canvas.blank(original_dimensions)
+    @canvas.clear
   end
 
   class Canvas

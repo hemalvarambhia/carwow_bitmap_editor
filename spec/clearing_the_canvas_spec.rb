@@ -10,7 +10,7 @@ describe 'Bitmap Editor' do
     context 'when there is no image' do
       it 'does nothing' do
         allow(@input).to receive(:gets).and_return 'C'
-        expect(@canvas).to receive(:blank)
+        expect(@canvas).to receive :clear
         editor = BitmapEditor.new(@input, nil, @canvas)
         
         editor.run
@@ -19,7 +19,8 @@ describe 'Bitmap Editor' do
 
     it 'wipes the canvas clean' do
       allow(@input).to receive(:gets).and_return 'C'
-      expect(@canvas).to receive :blank
+      expect(@canvas).to receive :clear
+
       editor = BitmapEditor.new(@input, nil, @canvas)
 
       editor.run
