@@ -1,11 +1,9 @@
 require 'forwardable'
 class BitmapEditor
   extend Forwardable
-  #def_delegator :@canvas, :image
+
   def initialize(input, commands)
     @input = input
-    @output = output
-    @canvas = canvas
     @commands = commands
   end
 
