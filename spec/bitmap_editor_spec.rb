@@ -14,7 +14,7 @@ describe 'Bitmap Editor' do
   end
 
   it "supports a 'clear canvas' command" do
-    clear_canvas_command = double :set_up_canvas
+    clear_canvas_command = double :clear_canvas
     expect(clear_canvas_command).to receive(:run)
     input = double(:input, print: nil)
     allow(input).to receive(:gets).and_return 'C'
