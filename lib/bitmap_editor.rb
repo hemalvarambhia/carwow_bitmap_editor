@@ -168,6 +168,12 @@ class BitmapEditor
     end
   end
 
+  class ExitCommand
+    def run args
+      exit
+    end
+  end
+
   class Canvas
     def initialize(pixels = [])
       @pixels = pixels
