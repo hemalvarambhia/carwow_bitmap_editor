@@ -26,4 +26,16 @@ describe 'Bitmap Editor' do
     editor.run
   end
 
+  it "supports a 'display image' command" do
+    display_image_command = double :display_image
+    expect(display_image_command).to receive(:run)
+    input = double(:input, print: nil)
+    allow(input).to receive(:gets).and_return 'S'
+    editor = BitmapEditor.new(
+        input,
+        { 'S' => display_image_command }
+    )
+
+    editor.run
+  end
 end
