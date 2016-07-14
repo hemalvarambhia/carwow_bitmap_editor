@@ -51,4 +51,17 @@ describe 'Bitmap Editor' do
 
     editor.run
   end
+
+  it "supports a 'paint horizontal line' command" do
+    draw_horizontal_line = double :draw_horizontal_line
+    expect(draw_horizontal_line).to receive(:run).with(['3', '5', '2', 'Z'])
+    input = double(:input, print: nil)
+    allow(input).to receive(:gets).and_return 'H 3 5 2 Z'
+    editor = BitmapEditor.new(
+        input,
+        { 'H' => draw_horizontal_line }
+    )
+
+    editor.run
+  end
 end
