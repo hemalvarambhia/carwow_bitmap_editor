@@ -145,6 +145,29 @@ class BitmapEditor
     end
   end
 
+  class DrawHorizontalLine
+    def initialize canvas
+      @canvas = canvas
+    end
+
+    def run args
+      line = (args.first..args[1]).map {|column| column.to_i}
+      line.each do |column|
+        paint([column, args[2].to_i, args.last])
+      end
+    end
+
+    private
+    def paint args
+      params = {
+          column: args.first.to_i - 1,
+          row: args[1].to_i - 1,
+          colour: args.last
+      }
+      @canvas.paint params
+    end
+  end
+
   class Canvas
     def initialize(pixels = [])
       @pixels = pixels
