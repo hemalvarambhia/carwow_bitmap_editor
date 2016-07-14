@@ -34,6 +34,8 @@ class BitmapEditor
   def blank_canvas args
     width = args.first.to_i < 1 ? 1 : args.first.to_i
     height = args.last.to_i < 1 ? 1 : args.last.to_i 
+    width = args.first.to_i > 250 ? 250 : width
+    height = args.last.to_i > 250 ? 250 : height
     @canvas.blank(width: width, height: height)
   end
 

@@ -35,6 +35,13 @@ describe 'Bitmap Editor' do
 
         @editor.run
       end
+
+      it 'creates the largest possible canvas' do
+        allow(@input).to receive(:gets).and_return 'I 300 300'
+        expect(@canvas).to receive(:blank).with(width: 250, height: 250)
+
+        @editor.run
+      end
     end
   end
 end
