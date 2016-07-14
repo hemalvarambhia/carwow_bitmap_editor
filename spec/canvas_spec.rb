@@ -16,7 +16,7 @@ describe 'A Canvas' do
     
     RSpec::Matchers.define :be_height  do |expected_height|
       match do |image|
-        @expected_height = expected_height
+        image.size == expected_height
       end
     end
 
