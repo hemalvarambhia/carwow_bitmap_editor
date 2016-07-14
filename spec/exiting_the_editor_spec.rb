@@ -2,7 +2,7 @@ require 'bitmap_editor'
 describe 'Bitmap Editor' do
   describe 'exiting the editor' do
     before :each do
-      @editor = BitmapEditor::ExitCommand.new
+      @editor = BitmapEditor::ExitEditor.new
     end
 
     it 'terminates the program' do

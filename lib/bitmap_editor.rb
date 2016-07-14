@@ -15,6 +15,16 @@ class BitmapEditor
     @input = input
     @output = output
     @canvas = canvas
+    @commands = {
+        'I' => SetupCanvas.new(@canvas),
+        'C' => ClearCanvas.new(@canvas),
+        'S' => DisplayImage.new(@output, @canvas),
+        'L' => ColourPixel.new(@canvas),
+        'V' => DrawVerticalLine.new(@canvas),
+        'H' => DrawHorizontalLine.new(@canvas),
+        'X' => ExitEditor.new,
+        '?' => Help.new(@output)
+    }
   end
 
   def run
@@ -29,58 +39,7 @@ class BitmapEditor
   def execute command
     type, *args = command.split ' '
 
-    blank_canvas(args) if type == 'I'
-    paint(args) if type == 'L'
-    show_contents if type == 'S'
-    draw_vertical_line(args) if type == 'V'
-    draw_horizontal_line(args) if type == 'H'
-    clear if type == 'C'
-    get_help if type == '?'
-    exit if type == 'X'
-  end
-
-  def blank_canvas args
-    width = args.first.to_i < 1 ? 1 : args.first.to_i
-    height = args.last.to_i < 1 ? 1 : args.last.to_i 
-    width = args.first.to_i > 250 ? 250 : width
-    height = args.last.to_i > 250 ? 250 : height
-    @canvas.blank(width: width, height: height)
-  end
-
-  def draw_vertical_line args
-    line = (args[1]..args[2]).map{|i| i.to_i}
-    line.each do |row|
-      column, colour = args.first.to_i, args.last
-      paint([column, row, colour])
-    end
-  end
-
-  def draw_horizontal_line args
-    line = (args.first..args[1]).map {|column| column.to_i}
-    line.each do |column|
-       paint([column, args[2].to_i, args.last])
-    end
-  end
-
-  def paint args
-    params = {
-      column: args.first.to_i - 1,
-      row: args[1].to_i - 1,
-      colour: args.last
-    }
-    @canvas.paint params
-  end
-
-  def show_contents
-    @output.puts @canvas
-  end
-
-  def clear
-    @canvas.clear
-  end
-
-  def get_help
-    @output.puts HELP
+    @commands[type].run args
   end
 
   class SetupCanvas
@@ -168,7 +127,7 @@ class BitmapEditor
     end
   end
 
-  class ExitCommand
+  class ExitEditor
     def run args
       exit
     end
