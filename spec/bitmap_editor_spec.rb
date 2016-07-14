@@ -38,4 +38,17 @@ describe 'Bitmap Editor' do
 
     editor.run
   end
+
+  it "supports a 'paint pixel' command" do
+    paint_pixel = double :paint_pixel
+    expect(paint_pixel).to receive(:run).with(["1", "2", 'Z'])
+    input = double(:input, print: nil)
+    allow(input).to receive(:gets).and_return 'L 1 2 Z'
+    editor = BitmapEditor.new(
+        input,
+        { 'L' => paint_pixel }
+    )
+
+    editor.run
+  end
 end
