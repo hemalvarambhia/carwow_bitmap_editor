@@ -1,46 +1,31 @@
 require 'bitmap_editor'
 describe 'Bitmap Editor' do
-  describe "executing the 'colour pixel' command" do
+  describe 'colouring a pixel' do
     before :each do
       @input = double(:input, print: nil)
-      @editor = BitmapEditor.new(@input, nil)
+      @canvas = double(:canvas, blank: nil)
+      @editor = BitmapEditor.new(@input, nil, @canvas)
     end
 
-    context 'when there is no image' do
-      it 'does not assign a colour' do
-        allow(@input).to receive(:gets).and_return 'L 4 4'
-
-        image = @editor.image
-        expect(image).to be_empty
-      end
-    end
-
-    it 'assigns a pixel the colour specified' do
-      allow(@input).to receive(:gets).and_return 'I 5 6', 'L 2 3 A'
-
-      2.times { @editor.run }
+    it 'colours in the specified pixel' do
+      allow(@input).to receive(:gets).and_return 'L 2 3 A'
+      expect(@canvas).to receive(:paint).with(column: 1, row: 2, colour: 'A')
       
-      image = @editor.image
-      expect(image[2][1]).to eq 'A'
+      @editor.run     
     end
 
-    it 'assigns any pixel any colour' do
-      allow(@input).to receive(:gets).and_return 'I 5 6', 'L 4 4 B'
+    it 'colours in any pixel' do
+      allow(@input).to receive(:gets).and_return 'L 3 4 A'
+      expect(@canvas).to receive(:paint).with(column: 2, row: 3, colour: 'A')
 
-      2.times { @editor.run }
-
-      image = @editor.image
-      expect(image[3][3]).to eq 'B'
+      @editor.run
     end
 
-    it 'leaves all other pixels untouched' do
-      allow(@input).to receive(:gets).and_return 'I 2 2', 'L 1 1 B'
+    it 'colours in any pixel with different colours' do
+      allow(@input).to receive(:gets).and_return 'L 4 5 B'
+      expect(@canvas).to receive(:paint).with(column: 3, row: 4, colour: 'B')
 
-      2.times { @editor.run }
-
-      image = @editor.image
-      unaffected = [ image[0][1], image[1][0], image[1][1] ]
-      expect(unaffected).to all eq 'O'
+      @editor.run
     end
   end
 end
