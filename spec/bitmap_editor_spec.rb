@@ -64,4 +64,17 @@ describe 'Bitmap Editor' do
 
     editor.run
   end
+
+  it "supports a 'paint vertical line' command" do
+    draw_vertical_line = double :draw_vertical_line
+    expect(draw_vertical_line).to receive(:run).with(['2', '3', '6', 'W'])
+    input = double(:input, print: nil)
+    allow(input).to receive(:gets).and_return 'V 2 3 6 W'
+    editor = BitmapEditor.new(
+        input,
+        { 'V' => draw_vertical_line }
+    )
+
+    editor.run
+  end
 end
