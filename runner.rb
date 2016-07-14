@@ -6,16 +6,15 @@ std_out = IO.new 1
 
 include Commands
 canvas = Painting::Canvas.new
-commands = {
-    'I' => SetupCanvas.new(canvas),
-    'C' => ClearCanvas.new(canvas),
-    'S' => DisplayCanvas.new(std_out, canvas),
-    'L' => ColourPixel.new(canvas),
-    'V' => DrawVerticalLine.new(canvas),
-    'H' => DrawHorizontalLine.new(canvas),
-    'X' => ExitEditor.new,
-    '?' => Help.new(std_out)
-}
+commands = Hash.new(Help.new(std_out))
+commands['I'] = SetupCanvas.new(canvas)
+commands['C'] = ClearCanvas.new(canvas)
+commands['S'] = DisplayCanvas.new(std_out, canvas)
+commands['L'] = ColourPixel.new(canvas)
+commands['V'] = DrawVerticalLine.new(canvas)
+commands['H'] = DrawHorizontalLine.new(canvas)
+commands['X'] = ExitEditor.new
+commands['?'] = Help.new(std_out)
 
 editor = BitmapEditor.new(std_in, commands)
 
