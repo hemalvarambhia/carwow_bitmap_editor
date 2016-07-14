@@ -16,25 +16,6 @@ describe 'A Canvas' do
 
       expect(image).to be_width(5).and be_height(4).and be_white
     end
-
-    RSpec::Matchers.define :be_width do |expected_width|
-      match do |image|
-        image.all? { |row| row.size == expected_width }
-      end
-    end
-    
-    RSpec::Matchers.define :be_height  do |expected_height|
-      match do |image|
-        image.size == expected_height
-      end
-    end
-
-    RSpec::Matchers.define :be_white do
-      match do |image|
-        white = Array.new(image.sample.size) {'O'}
-        image.all? { |row| row == white }
-      end
-    end
   end
 
   describe '#to_s' do
@@ -88,6 +69,25 @@ describe 'A Canvas' do
       @canvas.clear
 
       expect(@canvas.image).to be_width(2).and be_height(2).and be_white
+    end
+  end
+
+  RSpec::Matchers.define :be_width do |expected_width|
+    match do |image|
+      image.all? { |row| row.size == expected_width }
+    end
+  end
+
+  RSpec::Matchers.define :be_height  do |expected_height|
+    match do |image|
+      image.size == expected_height
+    end
+  end
+
+  RSpec::Matchers.define :be_white do
+    match do |image|
+      white = Array.new(image.sample.size) {'O'}
+      image.all? { |row| row == white }
     end
   end
 end
