@@ -91,7 +91,7 @@ module Commands
     end
   end
 
-  class DisplayImage
+  class DisplayCanvas
     def initialize(output, canvas)
       @output = output
       @canvas = canvas
