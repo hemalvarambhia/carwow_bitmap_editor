@@ -6,27 +6,27 @@ describe 'Drawing a horizonal line on the canvas' do
   end
 
   it 'paints only the horizontal line specified' do
-    (0..4).each do |column|
+    (1..5).each do |column|
       expect(@canvas).to(
-          receive(:paint).with(row: 1, column: column, colour: 'W'))
+          receive(:paint).with(row: 2, column: column, colour: 'W'))
     end
 
     @draw_horizontal_line.run  [1, 5, 2, 'W']
   end
 
   it 'paints a horizontal line anywhere' do
-    (0..1).each do |column|
+    (1..2).each do |column|
       expect(@canvas).to(
-          receive(:paint).with(row: 2, column: column, colour: 'W'))
+          receive(:paint).with(row: 3, column: column, colour: 'W'))
     end
 
     @draw_horizontal_line.run [1, 2, 3, 'W']
   end
 
   it 'paints a horizontal line anywhere any colour' do
-    (0..1).each do |column|
+    (1..2).each do |column|
       expect(@canvas).to(
-          receive(:paint).with(row: 2, column: column, colour: 'Z'))
+          receive(:paint).with(row: 3, column: column, colour: 'Z'))
     end
 
     @draw_horizontal_line.run [1, 2, 3, 'Z']
@@ -34,9 +34,9 @@ describe 'Drawing a horizonal line on the canvas' do
 
   context 'when it receives extra arguments' do
     it 'ignores them' do
-      (3..4).each do |column|
+      (4..5).each do |column|
         expect(@canvas).to(
-            receive(:paint).with(row: 0, column: column, colour: 'Y'))
+            receive(:paint).with(row: 1, column: column, colour: 'Y'))
       end
 
       @draw_horizontal_line.run [4, 5, 1, 'Y', 'X']
