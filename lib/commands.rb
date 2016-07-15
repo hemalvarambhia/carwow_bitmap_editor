@@ -20,8 +20,8 @@ module Commands
 
     def run args
       params = {
-          column: args.first.to_i - 1,
-          row: args[1].to_i - 1,
+          column: args.first.to_i,
+          row: args[1].to_i,
           colour: args[2]
       }
       @canvas.paint params
