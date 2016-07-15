@@ -38,7 +38,7 @@ module Painting
     end
 
     def outside_of_canvas?(row, column)
-      row = @pixels[row]
+      row = @pixels.fetch(row, [])
       column > row.size - 1
     end
   end

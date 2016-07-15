@@ -71,6 +71,13 @@ describe 'A Canvas' do
       expect(@canvas.image).to be_width(2).and be_height(2)
       expect(colour).to be_nil
     end
+
+    it 'does not paint away from the canvas' do
+      colour = @canvas.paint(row: 3, column: 3, colour: 'U')
+
+      expect(@canvas.image).to be_width(2).and be_height(2)
+      expect(colour).to be_nil
+    end
   end
 
   describe '#clear' do
