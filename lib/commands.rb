@@ -5,6 +5,7 @@ module Commands
     end
 
     def run args
+      return if args.size < 2
       width = args.first.to_i < 1 ? 1 : args.first.to_i
       height = args[1].to_i < 1 ? 1 : args[1].to_i
       width = args.first.to_i > 250 ? 250 : width
@@ -22,7 +23,7 @@ module Commands
       params = {
           column: args.first.to_i - 1,
           row: args[1].to_i - 1,
-          colour: args.last
+          colour: args[2]
       }
       @canvas.paint params
     end

@@ -22,5 +22,13 @@ describe 'Colouring a pixel on the canvas' do
 
     @colour_pixel.run [4, 5, 'B']
   end
+
+  context 'when extra arguments are given' do
+    it 'ignores them' do
+      expect(@canvas).to receive(:paint).with(column: 1, row: 9, colour: 'C')
+
+      @colour_pixel.run [2, 10, 'C', 'B']
+    end
+  end
 end
 
