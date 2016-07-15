@@ -130,12 +130,13 @@ module Commands
     S - Show the contents of the current image
     X - Terminate the session"
 
-    def initialize output
+    def initialize output, text = HELP
       @output = output
+      @text = text
     end
 
     def run args
-      @output.puts HELP
+      @output.puts @text
     end
   end
 end
