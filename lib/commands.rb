@@ -70,9 +70,11 @@ module Commands
     end
 
     def run args
+      row = args[2].to_i
+      colour = args[3]
       line = (args.first..args[1]).map {|column| column.to_i}
       line.each do |column|
-        paint([column, args[2].to_i, args.last])
+        paint([column, row, colour])
       end
     end
 

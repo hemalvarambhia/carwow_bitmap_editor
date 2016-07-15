@@ -31,4 +31,15 @@ describe 'Drawing a horizonal line on the canvas' do
 
     @draw_horizontal_line.run [1, 2, 3, 'Z']
   end
+
+  context 'when it receives extra arguments' do
+    it 'ignores them' do
+      (3..4).each do |column|
+        expect(@canvas).to(
+            receive(:paint).with(row: 0, column: column, colour: 'Y'))
+      end
+
+      @draw_horizontal_line.run [4, 5, 1, 'Y', 'X']
+    end
+  end
 end
