@@ -46,13 +46,21 @@ module Commands
     def run args
       column = args[0].to_i
       colour = args[3]
-      line = (args[1]..args[2]).map{|i| i.to_i}
-      line.each do |row|
+      from = args[1].to_i
+      to = args[2].to_i
+      vertical_line(from, to).each do |row|
         paint([column, row, colour])
       end
     end
 
     private
+
+    def vertical_line(from, to)
+      start = [from, to].min
+      finish = [from, to].max
+      (start..finish)
+    end
+    
     def paint args
       params = {
           column: args.first.to_i,
