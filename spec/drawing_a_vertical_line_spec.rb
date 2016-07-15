@@ -31,4 +31,15 @@ describe 'Drawing a vertical line on the canvas' do
 
     @draw_vertical_line.run [4, 2, 4, 'H']
   end
+
+  context 'when it receives extra parameters' do
+    it 'ignores them' do
+      (1..2).each do |row|
+        expect(@canvas).to(
+            receive(:paint).with(column: 0, row: row, colour: 'H'))
+      end
+
+      @draw_vertical_line.run [1, 2, 3, 'H', 'N']
+    end
+  end
 end
