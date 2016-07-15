@@ -16,7 +16,7 @@ module Painting
     def paint(params)
       row = params[:row]
       column = params[:column]
-      return nil if column > @pixels[row].size - 1 
+      return nil if outside_of_canvas?(row, column) 
       colour = params[:colour]
       @pixels[row][column] = colour
     end
@@ -35,6 +35,11 @@ module Painting
       @pixels = Array.new(@dimensions[:height]) do
         Array.new(@dimensions[:width]) { 'O' }
       end
+    end
+
+    def outside_of_canvas?(row, column)
+      row = @pixels[row]
+      column > row.size - 1
     end
   end
 end
