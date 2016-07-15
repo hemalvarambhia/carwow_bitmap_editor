@@ -25,8 +25,6 @@ Command pattern appears to be emerging in the `BitmapEditor`
 
 **TODO**
  - Command edge cases
-     - painting outside the canvas - hard to do as the painting logic is in 3 places.
-       Could model drawing vertical and horizontal lines as composite paint commands,
-       then could test this scenario in just the `ColourPixel` spec
-     - discarding extra command args
+      - too few args
+      - dimensions out of range
 
