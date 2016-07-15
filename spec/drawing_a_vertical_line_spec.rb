@@ -32,7 +32,7 @@ describe 'Drawing a vertical line on the canvas' do
     @draw_vertical_line.run [4, 2, 4, 'H']
   end
 
-  it 'is draws from the bottom to the top' do
+  it 'draws a vertical line from anywhere on the canvas' do
     (2..4).each do |row|
       expect(@canvas).to(
           receive(:paint).with(column: 4, row: row, colour: 'H'))
