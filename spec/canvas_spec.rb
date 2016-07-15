@@ -38,21 +38,21 @@ describe 'A Canvas' do
     end
 
     it 'paints the given pixel a colour' do
-      @canvas.paint(row: 0, column: 1, colour: 'H')
+      colour_painted = @canvas.paint(row: 0, column: 1, colour: 'H')
 
-      expect(@canvas.image[0][1]).to eq 'H'
+      expect(colour_painted).to eq 'H'
     end
 
     it 'paints any pixel a colour' do
-      @canvas.paint(row: 1, column: 1, colour: 'H')  
+      colour_painted = @canvas.paint(row: 1, column: 1, colour: 'H')  
    
-      expect(@canvas.image[1][1]).to eq 'H'
+      expect(colour_painted).to eq 'H'
     end
 
     it 'paints any pixel any colour' do
-      @canvas.paint(row: 1, column: 0, colour: 'X')       
+      colour_painted = @canvas.paint(row: 1, column: 0, colour: 'X')       
 
-      expect(@canvas.image[1][0]).to eq 'X'
+      expect(colour_painted).to eq 'X'
     end
 
     it 'leaves all other pixels white' do
