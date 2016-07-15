@@ -16,6 +16,7 @@ module Painting
     def paint(params)
       row = params[:row]
       column = params[:column]
+      return nil if column > @pixels[row].size - 1 
       colour = params[:colour]
       @pixels[row][column] = colour
     end
