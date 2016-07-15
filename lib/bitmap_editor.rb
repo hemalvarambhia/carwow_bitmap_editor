@@ -9,7 +9,7 @@ class BitmapEditor
 
   def run
     @input.print '> '
-    command = @input.gets.strip
+    command = @input.gets.strip.upcase
 
     execute command
   end

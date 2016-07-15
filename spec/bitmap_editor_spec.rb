@@ -112,4 +112,17 @@ describe 'Bitmap Editor' do
       editor.run
     end
   end
+
+  context 'when a command is invoked in the lower case' do
+    it 'handles the corresponding upper-cased command' do
+      allow(@input).to receive(:gets).and_return 'i 8 5'
+      set_up_canvas = double :set_up_canvas
+      expect(set_up_canvas).to receive(:run).with [ '8', '5' ]
+      commands = { 'I' => set_up_canvas }
+      commands.default = double(:help).as_null_object
+      editor = BitmapEditor.new(@input, commands)
+
+      editor.run
+    end
+  end
 end
