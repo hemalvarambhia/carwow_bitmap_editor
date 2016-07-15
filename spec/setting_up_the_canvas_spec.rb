@@ -29,6 +29,15 @@ describe 'Setting up the canvas' do
 
       @set_up_canvas.run [300, 300]
     end
+
+  end
+
+  context 'when extra arguments are given' do
+    it 'ignores them' do
+      expect(@canvas).to receive(:blank).with(width: 2, height: 10)
+
+      @set_up_canvas.run [2, 10, 'A']
+    end
   end
 end
 
