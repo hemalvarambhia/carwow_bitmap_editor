@@ -29,3 +29,4 @@ Command pattern appears to be emerging in the `BitmapEditor`
        Could model drawing vertical and horizontal lines as composite paint commands,
        then could test this scenario in just the `ColourPixel` spec
      - discarding extra command args
+     - invoke commands in a case insensitive manner
