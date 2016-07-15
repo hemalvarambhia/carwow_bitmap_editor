@@ -29,7 +29,6 @@ describe 'Setting up the canvas' do
 
       @set_up_canvas.run [300, 300]
     end
-
   end
 
   context 'when extra arguments are given' do
