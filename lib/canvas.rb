@@ -14,8 +14,8 @@ module Painting
     end
 
     def paint(params)
-      row = params[:row]
-      column = params[:column]
+      row = params[:row] - 1
+      column = params[:column] - 1
       return nil if outside_of_canvas?(row, column) 
       colour = params[:colour]
       @pixels[row][column] = colour

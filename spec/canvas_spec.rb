@@ -38,25 +38,28 @@ describe 'A Canvas' do
     end
 
     it 'paints the given pixel a colour' do
-      colour_painted = @canvas.paint(row: 0, column: 1, colour: 'H')
+      @canvas.paint(row: 1, column: 1, colour: 'H')
 
-      expect(colour_painted).to eq 'H'
+      image = @canvas.image
+      expect(image[0][0]).to eq 'H'
     end
 
     it 'paints any pixel a colour' do
-      colour_painted = @canvas.paint(row: 1, column: 1, colour: 'H')  
-   
-      expect(colour_painted).to eq 'H'
+      @canvas.paint(row: 1, column: 2, colour: 'H')  
+
+      image = @canvas.image
+      expect(image[0][1]).to eq 'H'
     end
 
     it 'paints any pixel any colour' do
-      colour_painted = @canvas.paint(row: 1, column: 0, colour: 'X')       
+      @canvas.paint(row: 2, column: 1, colour: 'X')       
 
-      expect(colour_painted).to eq 'X'
+      image = @canvas.image
+      expect(image[1][0]).to eq 'X'
     end
 
     it 'leaves all other pixels white' do
-      @canvas.paint(row: 1, column: 0, colour: 'X')
+      @canvas.paint(row: 2, column: 1, colour: 'X')
 
       image = @canvas.image
       untouched = [
@@ -66,7 +69,7 @@ describe 'A Canvas' do
     end
 
     it 'does not paint outside of the defined boundaries' do
-      colour = @canvas.paint(row: 0, column: 3, colour: 'U')
+      colour = @canvas.paint(row: 1, column: 3, colour: 'U')
 
       expect(@canvas.image).to be_width(2).and be_height(2)
       expect(colour).to be_nil
@@ -84,8 +87,8 @@ describe 'A Canvas' do
     it 'clears the canvas' do
       @canvas.blank(width: 2, height: 2)    
 
-      @canvas.paint(row: 0, column: 0, colour: 'A')
-      @canvas.paint(row: 0, column: 1, colour: 'B')
+      @canvas.paint(row: 1, column: 1, colour: 'A')
+      @canvas.paint(row: 2, column: 2, colour: 'B')
       @canvas.clear
 
       expect(@canvas.image).to be_width(2).and be_height(2).and be_white
