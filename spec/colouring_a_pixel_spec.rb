@@ -59,6 +59,14 @@ describe 'Colouring a pixel on the canvas' do
         @colour_pixel.run [290, 3, 'A']
       end
     end
+
+    context 'when the y-coordinate is below the minimum' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @colour_pixel.run [10, -3, 'B']
+      end
+    end
   end
 end
 

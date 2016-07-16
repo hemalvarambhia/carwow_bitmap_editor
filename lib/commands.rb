@@ -37,12 +37,13 @@ module Commands
 
     def run args
       column = args.first.to_i
-      if args.size < 3 or !column.between?(1, 250)
+      row = args[1].to_i
+      if args.size < 3 or !column.between?(1, 250) or row < 1
         @help.run
       else 
        params = {
            column: column,
-           row: args[1].to_i,
+           row: row,
            colour: args[2]
         }
         @canvas.paint params
