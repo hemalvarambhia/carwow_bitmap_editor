@@ -36,11 +36,12 @@ module Commands
     end
 
     def run args
-      if args.size < 3
+      column = args.first.to_i
+      if args.size < 3 or column < 1
         @help.run
       else 
        params = {
-           column: args.first.to_i,
+           column: column,
            row: args[1].to_i,
            colour: args[2]
         }
