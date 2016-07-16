@@ -44,9 +44,7 @@ module Commands
         @help.run
       else 
        params = {
-           column: args.first.to_i,
-           row: args[1].to_i,
-           colour: args[2]
+          column: args[0].to_i, row: args[1].to_i, colour: args[2]
         }
         @canvas.paint params
       end
@@ -99,9 +97,7 @@ module Commands
     
     def paint args
       params = {
-          column: args.first.to_i,
-          row: args[1].to_i,
-          colour: args.last
+        column: args[0].to_i, row: args[1].to_i, colour: args[2]
       }
       @canvas.paint params
     end
@@ -132,9 +128,7 @@ module Commands
     
     def paint args
       params = {
-          column: args.first.to_i,
-          row: args[1].to_i,
-          colour: args.last
+        column: args[0].to_i, row: args[1].to_i, colour: args[2]
       }
       @canvas.paint params
     end
