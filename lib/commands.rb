@@ -12,12 +12,20 @@ module Commands
 
     def run args
       width = args.first.to_i
-      if args.size < 2 or !width.between?(1, 250)
+      height = args[1].to_i
+      if SetupCanvas.invalid?(args)
         @help.run
       else
-        height = args[1].to_i
         @canvas.blank(width: width, height: height)
       end
+    end
+
+    private
+
+    def self.invalid? args
+      width = args.first.to_i
+      height = args[1].to_i
+      args.size < 2 or !width.between?(1, 250) or !height.between?(1, 250)
     end
   end
 

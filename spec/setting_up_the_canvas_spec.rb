@@ -50,6 +50,22 @@ describe 'Setting up the canvas' do
         @set_up_canvas.run [251, 1]
       end
     end
+
+    context 'when the height is below the allowed minimum' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @set_up_canvas.run [5, -1]
+      end
+    end
+
+    context 'when the height is above the allowed maximum' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @set_up_canvas.run [5, 300]
+      end
+    end
   end
 end
 
