@@ -1,6 +1,6 @@
 module Painting
   class Canvas
-    def initialize(pixels = [[]])
+    def initialize(pixels = [])
       @dimensions = { width: 0, height: 0 }
       @pixels = pixels
     end
