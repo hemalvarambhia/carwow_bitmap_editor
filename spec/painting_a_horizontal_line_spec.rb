@@ -2,7 +2,7 @@ require 'commands'
 describe 'Painting a horizonal line on the canvas' do
   before :each do
     @canvas = double(:canvas)
-    @draw_horizontal_line = Commands::DrawHorizontalLine.new(@canvas)
+    @draw_horizontal_line = Commands::PaintHorizontalLine.new(@canvas)
   end
 
   it 'paints only the horizontal line specified' do

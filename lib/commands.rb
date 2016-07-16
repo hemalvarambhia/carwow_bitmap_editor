@@ -36,7 +36,7 @@ module Commands
     end
   end
 
-  class DrawVerticalLine
+  class PaintVerticalLine
     def initialize canvas
       @canvas = canvas
     end
@@ -69,7 +69,7 @@ module Commands
     end
   end
 
-  class DrawHorizontalLine
+  class PaintHorizontalLine
     def initialize canvas
       @canvas = canvas
     end
@@ -85,6 +85,7 @@ module Commands
     end
 
     private
+
     def horizontal_line(from, to)
       start = [from, to].min
       finish = [from, to].max

@@ -2,7 +2,7 @@ require 'commands'
 describe 'Painting a vertical line on the canvas' do
   before :each do
     @canvas = double(:canvas)
-    @draw_vertical_line = Commands::DrawVerticalLine.new(@canvas)
+    @draw_vertical_line = Commands::PaintVerticalLine.new(@canvas)
   end
 
   it 'paints a vertical line on the specified part' do
