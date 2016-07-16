@@ -7,7 +7,8 @@ std_out = IO.new 1
 include Commands
 canvas = Painting::Canvas.new
 commands = Hash.new(Help.new(std_out))
-commands['I'] = SetupCanvas.new(canvas)
+commands['I'] =
+  SetupCanvas.new(canvas, Help.new(std_out, SetupCanvas::USAGE))
 commands['C'] = ClearCanvas.new(canvas)
 commands['S'] = DisplayCanvas.new(std_out, canvas)
 commands['L'] = ColourPixel.new(canvas)

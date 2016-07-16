@@ -1,13 +1,23 @@
 module Commands
   class SetupCanvas
-    def initialize(canvas)
+    USAGE =
+      "I - set up a canvas
+       M - width [1, 250]
+       N - height [1, 250]
+      "
+    def initialize(canvas, help = nil)
       @canvas = canvas
+      @help = help
     end
 
     def run args
-      width = args.first.to_i
-      height = args[1].to_i
-      @canvas.blank(width: width, height: height)
+      if args.size < 2
+        @help.run
+      else
+        width = args.first.to_i
+        height = args[1].to_i
+        @canvas.blank(width: width, height: height)
+      end
     end
   end
 

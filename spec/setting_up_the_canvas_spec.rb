@@ -2,7 +2,8 @@ require 'commands'
 describe 'Setting up the canvas' do
   before :each do
     @canvas = double(:canvas)
-    @set_up_canvas = Commands::SetupCanvas.new @canvas
+    @help = double :help
+    @set_up_canvas = Commands::SetupCanvas.new @canvas, @help
   end
 
   it 'creates a white M x N canvas' do
@@ -22,6 +23,16 @@ describe 'Setting up the canvas' do
       expect(@canvas).to receive(:blank).with(width: 2, height: 10)
 
       @set_up_canvas.run [2, 10, 'A']
+    end
+  end
+
+  describe 'incorrect usage' do
+    context 'when all dimensions are not specified' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+        
+        @set_up_canvas.run [2]
+      end
     end
   end
 end
