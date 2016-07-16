@@ -29,6 +29,10 @@ describe 'Setting up the canvas' do
   end
 
   describe 'incorrect usage' do
+    before :each do
+      allow(@canvas).to receive :blank
+    end
+    
     context 'when all dimensions are not specified' do
       it 'demonstrates usage' do
         expect(@help).to receive :run
