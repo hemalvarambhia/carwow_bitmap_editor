@@ -11,12 +11,10 @@ module Commands
     end
 
     def run args
-      width = args.first.to_i
-      height = args[1].to_i
       if SetupCanvas.invalid?(args)
         @help.run
       else
-        @canvas.blank(width: width, height: height)
+        @canvas.blank(width: args.first.to_i, height: args[1].to_i)
       end
     end
 
@@ -42,14 +40,12 @@ module Commands
     end
 
     def run args
-      column = args.first.to_i
-      row = args[1].to_i
       if ColourPixel.invalid?(args)
         @help.run
       else 
        params = {
-           column: column,
-           row: row,
+           column: args.first.to_i,
+           row: args[1].to_i,
            colour: args[2]
         }
         @canvas.paint params
@@ -61,10 +57,10 @@ module Commands
     def self.invalid?(args)
       column = args.first.to_i
       row = args[1].to_i
-
+      colour = args[2]
       args.size < 3 or
         !column.between?(1, 250) or !row.between?(1, 250) or
-        !args[2].between?('A', 'Z')
+        !('A'..'Z').include?(colour)
     end
   end
 
