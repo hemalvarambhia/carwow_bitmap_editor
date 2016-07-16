@@ -1,5 +1,5 @@
 require 'commands'
-describe 'Drawing a vertical line on the canvas' do
+describe 'Painting a vertical line on the canvas' do
   before :each do
     @canvas = double(:canvas)
     @draw_vertical_line = Commands::DrawVerticalLine.new(@canvas)

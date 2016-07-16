@@ -1,5 +1,5 @@
 require 'commands'
-describe 'Drawing a horizonal line on the canvas' do
+describe 'Painting a horizonal line on the canvas' do
   before :each do
     @canvas = double(:canvas)
     @draw_horizontal_line = Commands::DrawHorizontalLine.new(@canvas)
