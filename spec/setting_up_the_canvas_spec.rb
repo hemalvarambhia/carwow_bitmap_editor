@@ -7,7 +7,6 @@ describe 'Setting up the canvas' do
   end
 
   describe 'Correct usage' do
-
     it 'creates a white M x N canvas' do
       expect(@canvas).to receive(:blank).with(width: 2, height: 2)
 
