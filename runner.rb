@@ -11,7 +11,8 @@ commands['I'] =
   SetupCanvas.new(canvas, Help.new(std_out, SetupCanvas::USAGE))
 commands['C'] = ClearCanvas.new(canvas)
 commands['S'] = DisplayCanvas.new(std_out, canvas)
-commands['L'] = ColourPixel.new(canvas)
+commands['L'] =
+  ColourPixel.new(canvas, Help.new(std_out))
 commands['V'] = PaintVerticalLine.new(canvas)
 commands['H'] = PaintHorizontalLine.new(canvas)
 commands['X'] = ExitEditor.new

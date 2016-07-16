@@ -2,7 +2,8 @@ require 'commands'
 describe 'Colouring a pixel on the canvas' do
   before :each do
     @canvas = double(:canvas, blank: nil)
-    @colour_pixel = Commands::ColourPixel.new(@canvas)
+    @help = double :help
+    @colour_pixel = Commands::ColourPixel.new(@canvas, @help)
   end
 
   describe 'Correct usage' do
@@ -30,6 +31,16 @@ describe 'Colouring a pixel on the canvas' do
           receive(:paint).with(column: 2, row: 10, colour: 'C'))
 
         @colour_pixel.run [2, 10, 'C', 'B']
+      end
+    end
+  end
+
+  describe 'Incorrect usage' do
+    context 'when all arguments are not given' do
+      it 'demonstrates usage' do
+        expect(@help).to receive(:run)
+        
+        @colour_pixel.run [2]
       end
     end
   end

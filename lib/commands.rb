@@ -30,17 +30,22 @@ module Commands
   end
 
   class ColourPixel
-    def initialize canvas
+    def initialize(canvas, help)
       @canvas = canvas
+      @help = help
     end
 
     def run args
-      params = {
-          column: args.first.to_i,
-          row: args[1].to_i,
-          colour: args[2]
-      }
-      @canvas.paint params
+      if args.size < 3
+        @help.run
+      else 
+       params = {
+           column: args.first.to_i,
+           row: args[1].to_i,
+           colour: args[2]
+        }
+        @canvas.paint params
+      end
     end
   end
 
