@@ -51,6 +51,14 @@ describe 'Colouring a pixel on the canvas' do
         @colour_pixel.run [-2, 3, 'A']
       end
     end
+
+    context 'when the x-coordinate is more than the maximum' do
+      it 'demonstrates usage' do
+        expect(@help).to receive(:run)
+        
+        @colour_pixel.run [290, 3, 'A']
+      end
+    end
   end
 end
 
