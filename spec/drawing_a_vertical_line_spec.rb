@@ -5,7 +5,7 @@ describe 'Drawing a vertical line on the canvas' do
     @draw_vertical_line = Commands::DrawVerticalLine.new(@canvas)
   end
 
-  it 'draws a vertical line on the specified part' do
+  it 'paints a vertical line on the specified part' do
     (3..6).each do |row|
       expect(@canvas).to(
           receive(:paint).with(column: 2, row: row, colour: 'W'))
@@ -14,7 +14,7 @@ describe 'Drawing a vertical line on the canvas' do
     @draw_vertical_line.run [2, 3, 6, 'W']
   end
 
-  it 'draws a vertical line anywhere' do
+  it 'paints a vertical line anywhere' do
     (1..3).each do |row|
       expect(@canvas).to(
           receive(:paint).with(column: 5, row: row, colour: 'W'))
@@ -23,7 +23,7 @@ describe 'Drawing a vertical line on the canvas' do
     @draw_vertical_line.run [5, 1, 3, 'W']
   end
 
-  it 'draws a vertical line anywhere in any colour' do
+  it 'paints a vertical line anywhere in any colour' do
     (2..4).each do |row|
       expect(@canvas).to(
           receive(:paint).with(column: 4, row: row, colour: 'H'))
@@ -32,7 +32,7 @@ describe 'Drawing a vertical line on the canvas' do
     @draw_vertical_line.run [4, 2, 4, 'H']
   end
 
-  it 'draws a vertical line from anywhere on the canvas' do
+  it 'paints a vertical line in an upward direction' do
     (2..4).each do |row|
       expect(@canvas).to(
           receive(:paint).with(column: 4, row: row, colour: 'H'))

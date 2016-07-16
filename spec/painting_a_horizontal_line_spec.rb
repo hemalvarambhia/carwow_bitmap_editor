@@ -32,7 +32,7 @@ describe 'Drawing a horizonal line on the canvas' do
     @draw_horizontal_line.run [1, 2, 3, 'Z']
   end
 
-  it 'paints a horizontal line from anywhere on the canvas' do
+  it 'paints a horizontal line from right to left' do
     (1..2).each do |column|
       expect(@canvas).to(
           receive(:paint).with(row: 3, column: column, colour: 'Z'))
