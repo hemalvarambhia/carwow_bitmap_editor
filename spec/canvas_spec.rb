@@ -93,6 +93,12 @@ describe 'A Canvas' do
 
       expect(@canvas.image).to be_width(2).and be_height(2).and be_white
     end
+
+    it 'clears a canvas with no image' do
+      @canvas.clear
+
+      expect(@canvas.image).to be_width(0).and be_height(0)
+    end
   end
 
   RSpec::Matchers.define :be_width do |expected_width|
