@@ -82,9 +82,10 @@ describe 'Colouring a pixel on the canvas' do
 
     context 'when the colour is outside the acceptable range' do
       it 'demonstrates usage' do
-        expect(@help).to receive :run
-
-        @colour_pixel.run [10, 10, '@']
+        ['@', 'EF' 'FGH' '123' 'D1E2', nil ].each do |colour| 
+          expect(@help).to receive :run
+          @colour_pixel.run [10, 10, colour]
+        end
       end
     end
   end
