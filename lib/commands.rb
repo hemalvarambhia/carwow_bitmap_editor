@@ -79,10 +79,10 @@ module Commands
     end
 
     def run args
-      column = args[0].to_i
-      if args.size < 4 or !column.between?(1, 250)
+      if PaintVerticalLine.invalid?(args)
         @help.run
-      else  
+      else
+        column = args[0].to_i
         colour = args[3]
         from = args[1].to_i
         to = args[2].to_i
@@ -93,6 +93,11 @@ module Commands
     end
 
     private
+
+    def self.invalid?(args)
+      column = args[0].to_i
+      args.size < 4 or !column.between?(1, 250)
+    end
 
     def vertical_line(from, to)
       start = [from, to].min
