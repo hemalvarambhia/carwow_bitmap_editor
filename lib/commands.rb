@@ -50,11 +50,15 @@ module Commands
       end
     end
 
+    private
+
     def self.invalid?(args)
       column = args.first.to_i
       row = args[1].to_i
 
-      args.size < 3 or !column.between?(1, 250) or !row.between?(1, 250)
+      args.size < 3 or
+        !column.between?(1, 250) or !row.between?(1, 250) or
+        !args[2].between?('A', 'Z')
     end
   end
 

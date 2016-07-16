@@ -36,6 +36,10 @@ describe 'Colouring a pixel on the canvas' do
   end
 
   describe 'Incorrect usage' do
+    before :each do
+      allow(@canvas).to receive :paint
+    end
+    
     context 'when all arguments are not given' do
       it 'demonstrates usage' do
         expect(@help).to receive(:run)
@@ -73,6 +77,14 @@ describe 'Colouring a pixel on the canvas' do
         expect(@help).to receive :run
 
         @colour_pixel.run [10, 300, 'B']
+      end
+    end
+
+    context 'when the colour is outside the acceptable range' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @colour_pixel.run [10, 10, '@']
       end
     end
   end
