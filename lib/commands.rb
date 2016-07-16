@@ -2,10 +2,10 @@ module Commands
   class SetupCanvas
     USAGE =
       "I - set up a canvas
-       M - width [1, 250]
-       N - height [1, 250]
+       M - width (must be between 1 and 250)
+       N - height (must be between 1 and 250)
       "
-    def initialize(canvas, help = nil)
+    def initialize(canvas, help)
       @canvas = canvas
       @help = help
     end
