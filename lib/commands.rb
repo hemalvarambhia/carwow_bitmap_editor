@@ -79,7 +79,8 @@ module Commands
     end
 
     def run args
-      if args.size < 4
+      column = args[0].to_i
+      if args.size < 4 or column < 1
         @help.run
       else  
         column = args[0].to_i

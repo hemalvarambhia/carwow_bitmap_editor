@@ -68,5 +68,13 @@ describe 'Painting a vertical line on the canvas' do
         @draw_vertical_line.run [1, 2, 3]
       end
     end
+
+    context 'when the starting y-coordinate is below the minimum' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+        
+        @draw_vertical_line.run [-1, 2, 3, 'Z']
+      end
+    end
   end
 end
