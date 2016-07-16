@@ -2,7 +2,9 @@ require 'commands'
 describe 'Painting a vertical line on the canvas' do
   before :each do
     @canvas = double(:canvas)
-    @draw_vertical_line = Commands::PaintVerticalLine.new(@canvas)
+    @help = double :help
+    @draw_vertical_line =
+      Commands::PaintVerticalLine.new(@canvas, @help)
   end
 
   describe 'Correct usage' do
@@ -50,6 +52,20 @@ describe 'Painting a vertical line on the canvas' do
         end
 
         @draw_vertical_line.run [1, 2, 3, 'H', 'N']
+      end
+    end
+  end
+
+  describe 'Incorrect usage' do
+    before :each do
+      allow(@canvas).to receive :paint
+    end
+    
+    context 'when it receives too few arguments' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @draw_vertical_line.run [1, 2, 3]
       end
     end
   end

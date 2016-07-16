@@ -73,17 +73,22 @@ module Commands
   end
 
   class PaintVerticalLine
-    def initialize canvas
+    def initialize(canvas, help)
       @canvas = canvas
+      @help = help
     end
 
     def run args
-      column = args[0].to_i
-      colour = args[3]
-      from = args[1].to_i
-      to = args[2].to_i
-      vertical_line(from, to).each do |row|
-        paint([column, row, colour])
+      if args.size < 4
+        @help.run
+      else  
+        column = args[0].to_i
+        colour = args[3]
+        from = args[1].to_i
+        to = args[2].to_i
+        vertical_line(from, to).each do |row|
+          paint([column, row, colour])
+        end
       end
     end
 
