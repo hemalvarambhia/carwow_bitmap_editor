@@ -30,6 +30,12 @@ module Commands
   end
 
   class ColourPixel
+    USAGE =
+      "L - Colour in a pixel
+       X - column (must be between 1 and 250)
+       Y - row (must be between 1 and 250)
+       C - colour (must be between 'A' to 'Z')
+      "
     def initialize(canvas, help)
       @canvas = canvas
       @help = help
