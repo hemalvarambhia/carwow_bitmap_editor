@@ -11,10 +11,10 @@ module Commands
     end
 
     def run args
-      if args.size < 2
+      width = args.first.to_i
+      if args.size < 2 or !(1..250).cover?(width)
         @help.run
       else
-        width = args.first.to_i
         height = args[1].to_i
         @canvas.blank(width: width, height: height)
       end

@@ -34,6 +34,22 @@ describe 'Setting up the canvas' do
         @set_up_canvas.run [2]
       end
     end
+
+    context 'when the width is less than the allowed minimum' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @set_up_canvas.run [ -5, 1 ]
+      end
+    end
+
+    context 'when the width is over the allowed maximum' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @set_up_canvas.run [251, 1]
+      end
+    end
   end
 end
 
