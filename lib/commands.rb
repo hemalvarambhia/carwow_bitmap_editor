@@ -38,7 +38,7 @@ module Commands
     def run args
       column = args.first.to_i
       row = args[1].to_i
-      if args.size < 3 or !column.between?(1, 250) or !row.between?(1, 250)
+      if ColourPixel.invalid?(args)
         @help.run
       else 
        params = {
@@ -48,6 +48,13 @@ module Commands
         }
         @canvas.paint params
       end
+    end
+
+    def self.invalid?(args)
+      column = args.first.to_i
+      row = args[1].to_i
+
+      args.size < 3 or !column.between?(1, 250) or !row.between?(1, 250)
     end
   end
 
