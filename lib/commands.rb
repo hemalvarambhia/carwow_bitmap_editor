@@ -5,10 +5,8 @@ module Commands
     end
 
     def run args
-      width = args.first.to_i < 1 ? 1 : args.first.to_i
-      height = args[1].to_i < 1 ? 1 : args[1].to_i
-      width = args.first.to_i > 250 ? 250 : width
-      height = args[1].to_i > 250 ? 250 : height
+      width = args.first.to_i
+      height = args[1].to_i
       @canvas.blank(width: width, height: height)
     end
   end
