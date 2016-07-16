@@ -38,7 +38,7 @@ module Commands
     def run args
       column = args.first.to_i
       row = args[1].to_i
-      if args.size < 3 or !column.between?(1, 250) or row < 1
+      if args.size < 3 or !column.between?(1, 250) or !row.between?(1, 250)
         @help.run
       else 
        params = {
