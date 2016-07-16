@@ -103,7 +103,7 @@ module Commands
   end
 
   class ExitEditor
-    def run args
+    def run *args
       exit
     end
   end
@@ -114,7 +114,7 @@ module Commands
       @canvas = canvas
     end
 
-    def run args
+    def run *args
       @output.puts @canvas
     end
   end
@@ -134,7 +134,7 @@ module Commands
       @text = text
     end
 
-    def run args
+    def run *args
       @output.puts @text
     end
   end

@@ -5,12 +5,12 @@ describe 'Exiting' do
   end
 
   it 'terminates the program' do
-    expect { @editor.run [] }.to raise_error SystemExit
+    expect { @editor.run }.to raise_error SystemExit
   end
 
   context 'when the command contains a new line' do
     it 'terminates the program' do
-      expect { @editor.run [] }.to raise_error SystemExit
+      expect { @editor.run }.to raise_error SystemExit
     end
   end
 end

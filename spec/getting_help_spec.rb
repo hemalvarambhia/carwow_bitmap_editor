@@ -5,7 +5,7 @@ describe 'Getting help' do
     expect(io_output).to receive(:puts).with Commands::Help::HELP
     help = Commands::Help.new(io_output)
 
-    help.run []
+    help.run
   end
 end
 

@@ -9,7 +9,7 @@ describe 'Displaying the canvas' do
   it 'displays any image on the canvas' do
     expect(@output).to receive(:puts).with(@canvas)
 
-    @display_image.run []
+    @display_image.run
   end
 end
 
