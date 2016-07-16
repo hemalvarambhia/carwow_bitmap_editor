@@ -83,7 +83,6 @@ module Commands
       if args.size < 4 or column < 1
         @help.run
       else  
-        column = args[0].to_i
         colour = args[3]
         from = args[1].to_i
         to = args[2].to_i
