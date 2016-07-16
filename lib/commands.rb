@@ -80,7 +80,7 @@ module Commands
 
     def run args
       column = args[0].to_i
-      if args.size < 4 or column < 1
+      if args.size < 4 or !column.between?(1, 250)
         @help.run
       else  
         colour = args[3]

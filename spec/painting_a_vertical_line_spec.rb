@@ -76,5 +76,13 @@ describe 'Painting a vertical line on the canvas' do
         @draw_vertical_line.run [-1, 2, 3, 'Z']
       end
     end
+
+    context 'when the x-coordinate is above the maximum' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @draw_vertical_line.run [260, 2, 3, 'A']
+      end
+    end
   end
 end
