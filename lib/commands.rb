@@ -12,7 +12,7 @@ module Commands
 
     def run args
       width = args.first.to_i
-      if args.size < 2 or !(1..250).cover?(width)
+      if args.size < 2 or !width.between?(1, 250)
         @help.run
       else
         height = args[1].to_i
