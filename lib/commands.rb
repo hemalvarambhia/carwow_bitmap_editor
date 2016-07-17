@@ -137,12 +137,13 @@ module Commands
       if invalid?(args)
         @help.run
       else
-        row = args[2].to_i
         colour = args[3]
         from = args[0].to_i
         to = args[1].to_i
-        horizontal_line(from, to).each do |column|
-          paint([column, row, colour])
+        row = args[2].to_i
+        horizontal_line(from, to, row).each do |point|
+          params = point.merge(colour: colour)
+          @canvas.paint params
         end
       end
     end
@@ -157,17 +158,10 @@ module Commands
         unavailable?(colour)
     end
 
-    def horizontal_line(from, to)
-      start = [from, to].min
-      finish = [from, to].max
-      (start..finish)
-    end
-    
-    def paint args
-      params = {
-        column: args[0].to_i, row: args[1].to_i, colour: args[2]
-      }
-      @canvas.paint params
+    def horizontal_line(from_column, to_column, row)
+      start = [from_column, to_column].min
+      finish = [from_column, to_column].max
+      (start..finish).map { |column| { row: row, column: column } }
     end
   end
 
