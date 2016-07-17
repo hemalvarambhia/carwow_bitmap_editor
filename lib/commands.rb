@@ -56,10 +56,10 @@ module Commands
     private
 
     def invalid?(args)
-      column, row = args[0].to_i, args[1].to_i
+      point = Point.new(x: args[0].to_i, y: args[0].to_i)
       colour = args[2]
       args.size < 3 or
-        !within_bounds?(column, row) or
+        !point.within_bounds? or
         unavailable?(colour)
     end
   end
@@ -106,12 +106,12 @@ module Commands
 
     def invalid?(args)
       column = args[0].to_i
-      starting_row = args[1].to_i
-      finishing_row = args[2].to_i
+      starting_point = Point.new(x: args[0].to_i, y: args[1].to_i)
+      finishing_point = Point.new(x: args[0].to_i, y: args[2].to_i)
       colour = args[3]
       args.size < 4 or
-        !within_bounds?(starting_row, column) or
-        !within_bounds?(finishing_row, column) or
+        !starting_point.within_bounds? or
+        !finishing_point.within_bounds? or
         unavailable?(colour)
     end
 
@@ -156,9 +156,11 @@ module Commands
 
     def invalid?(args)
       colour = args[3]
+      starting_point = Point.new(x: args[0].to_i, y: args[2].to_i)
+      finishing_point = Point.new(x: args[1].to_i, y: args[2].to_i)
       args.size < 4 or
-        !within_bounds?(args[0].to_i, args[2].to_i) or
-        !within_bounds?(args[1].to_i, args[2].to_i) or
+        !starting_point.within_bounds? or
+        !finishing_point.within_bounds? or
         unavailable?(colour)
     end
 
