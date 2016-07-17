@@ -126,13 +126,14 @@ module Commands
   end
 
   class PaintHorizontalLine
+    include Coordinates
     def initialize(canvas, help)
       @canvas = canvas
       @help = help
     end
 
     def run args
-      if args.size < 4
+      if invalid?(args)
         @help.run
       else
         row = args[2].to_i
@@ -146,6 +147,13 @@ module Commands
     end
 
     private
+
+    def invalid?(args)
+      args.size < 4 or
+        !within_bounds?(args[0].to_i, args[2].to_i) or
+        !within_bounds?(args[1].to_i, args[2].to_i) or
+        !('A'..'Z').include?(args[3])
+    end
 
     def horizontal_line(from, to)
       start = [from, to].min

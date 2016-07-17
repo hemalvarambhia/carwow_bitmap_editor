@@ -68,5 +68,31 @@ describe 'Painting a horizonal line on the canvas' do
         @draw_horizontal_line.run [1, 2, 3]
       end
     end
+
+    context 'when the starting coordinates are out of bounds' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @draw_horizontal_line.run [-1, 2, 3, 'W']
+      end
+    end
+
+    context 'when the finishing coordinates are out of bounds' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @draw_horizontal_line.run [1, 251, 3, 'W']
+      end
+    end
+
+    context 'when the colour is outside of the acceptable range' do
+      it 'demonstrates usage' do
+        ['@', 'EFG', '123', 'd','D1'].each do |colour|
+          expect(@help).to receive :run
+          
+          @draw_horizontal_line.run [3, 5, 2, colour]
+        end
+      end
+    end
   end
 end
