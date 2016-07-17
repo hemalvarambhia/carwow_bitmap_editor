@@ -1,3 +1,4 @@
+require 'coordinates'
 module Commands
   class SetupCanvas
     USAGE =
@@ -28,6 +29,7 @@ module Commands
   end
 
   class ColourPixel
+    include Coordinates
     USAGE =
       "L - Colour in a pixel
        X - column (must be between 1 and 250)
@@ -40,7 +42,7 @@ module Commands
     end
 
     def run args
-      if ColourPixel.invalid?(args)
+      if invalid?(args)
         @help.run
       else 
        params = {
@@ -52,16 +54,12 @@ module Commands
 
     private
 
-    def self.invalid?(args)
+    def invalid?(args)
       column, row = args[0].to_i, args[1].to_i
       colour = args[2]
       args.size < 3 or
         !within_bounds?(column, row) or
         !('A'..'Z').include?(colour)
-    end
-    
-    def self.within_bounds?(row, column)
-      column.between?(1, 250) and row.between?(1, 250)
     end
   end
 
@@ -76,13 +74,14 @@ module Commands
   end
 
   class PaintVerticalLine
+    include Coordinates
     def initialize(canvas, help)
       @canvas = canvas
       @help = help
     end
 
     def run args
-      if PaintVerticalLine.invalid?(args)
+      if invalid?(args)
         @help.run
       else
         column = args[0].to_i
@@ -97,15 +96,11 @@ module Commands
 
     private
 
-    def self.invalid?(args)
+    def invalid?(args)
       column = args[0].to_i
       starting_row = args[1].to_i
       args.size < 4 or
         !within_bounds?(starting_row, column)
-    end
-
-    def self.within_bounds?(row, column)
-      column.between?(1, 250) and row.between?(1, 250)
     end
 
     def vertical_line(column, from, to)
