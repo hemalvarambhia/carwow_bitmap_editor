@@ -13,7 +13,7 @@ module Commands
     end
 
     def run args
-      if SetupCanvas.invalid?(args)
+      if invalid?(args)
         @help.run
       else
         @canvas.blank(width: args.first.to_i, height: args[1].to_i)
@@ -22,7 +22,7 @@ module Commands
 
     private
 
-    def self.invalid? args
+    def invalid? args
       width = args.first.to_i
       height = args[1].to_i
       args.size < 2 or !width.between?(1, 250) or !height.between?(1, 250)
