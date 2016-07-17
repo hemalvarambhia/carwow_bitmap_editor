@@ -14,9 +14,11 @@ commands['S'] = DisplayCanvas.new(std_out, canvas)
 commands['L'] =
   ColourPixel.new(canvas, Help.new(std_out, ColourPixel::USAGE))
 commands['V'] =
-  PaintVerticalLine.new(canvas, Help.new(std_out, PaintVerticalLine::USAGE))
+  PaintVerticalLine.new(
+    canvas, Help.new(std_out, PaintVerticalLine::USAGE))
 commands['H'] =
-  PaintHorizontalLine.new(canvas, Help.new(std_out))
+  PaintHorizontalLine.new(
+    canvas, Help.new(std_out, PaintHorizontalLine::USAGE))
 commands['X'] = ExitEditor.new
 commands['?'] = Help.new(std_out)
 
