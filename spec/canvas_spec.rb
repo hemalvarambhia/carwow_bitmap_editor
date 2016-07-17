@@ -1,5 +1,7 @@
 require 'canvas'
+require 'coordinates'
 describe 'A Canvas' do
+  include Coordinates
   before :each do
     @canvas = Painting::Canvas.new
   end
@@ -38,28 +40,32 @@ describe 'A Canvas' do
     end
 
     it 'paints the given pixel a colour' do
-      @canvas.paint(row: 1, column: 1, colour: 'H')
+      point = Coordinates::Point.new(x: 1, y: 1)
+      @canvas.paint(point: point, colour: 'H')
 
       image = @canvas.image
       expect(image[0][0]).to eq 'H'
     end
 
     it 'paints any pixel a colour' do
-      @canvas.paint(row: 1, column: 2, colour: 'H')  
+      point = Coordinates::Point.new(x: 2, y: 1) 
+      @canvas.paint(point: point, colour: 'H')  
 
       image = @canvas.image
       expect(image[0][1]).to eq 'H'
     end
 
     it 'paints any pixel any colour' do
-      @canvas.paint(row: 2, column: 1, colour: 'X')       
+      point = Coordinates::Point.new(x: 1, y: 2)
+      @canvas.paint(point: point, colour: 'X')       
 
       image = @canvas.image
       expect(image[1][0]).to eq 'X'
     end
 
     it 'leaves all other pixels white' do
-      @canvas.paint(row: 2, column: 1, colour: 'X')
+      point = Coordinates::Point.new(x: 1, y: 2)
+      @canvas.paint(point: point, colour: 'X')
 
       image = @canvas.image
       untouched = [
@@ -69,14 +75,16 @@ describe 'A Canvas' do
     end
 
     it 'does not paint outside of the defined boundaries' do
-      colour = @canvas.paint(row: 1, column: 3, colour: 'U')
+      not_on_canvas = Coordinates::Point.new(x: 3, y: 1)
+      colour = @canvas.paint(point: not_on_canvas, colour: 'U')
 
       expect(@canvas.image).to be_width(2).and be_height(2)
       expect(colour).to be_nil
     end
 
     it 'does not paint away from the canvas' do
-      colour = @canvas.paint(row: 3, column: 3, colour: 'U')
+      not_on_canvas = Coordinates::Point.new(x: 3, y: 3)
+      colour = @canvas.paint(point: not_on_canvas, colour: 'U')
 
       expect(@canvas.image).to be_width(2).and be_height(2)
       expect(colour).to be_nil
@@ -85,10 +93,12 @@ describe 'A Canvas' do
 
   describe '#clear' do
     it 'clears the canvas' do
-      @canvas.blank(width: 2, height: 2)    
-
-      @canvas.paint(row: 1, column: 1, colour: 'A')
-      @canvas.paint(row: 2, column: 2, colour: 'B')
+      @canvas.blank(width: 2, height: 2)
+      
+      @canvas.paint(
+        point: Coordinates::Point.new(x: 1, y: 1), colour: 'A')
+      @canvas.paint(
+        point: Coordinates::Point.new(x: 2, y: 2), colour: 'B')
       @canvas.clear
 
       expect(@canvas.image).to be_width(2).and be_height(2).and be_white

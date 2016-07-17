@@ -45,9 +45,10 @@ module Commands
     def run args
       if invalid?(args)
         @help.run
-      else 
-       params = {
-          column: args[0].to_i, row: args[1].to_i, colour: args[2]
+      else
+        point = Point.new(x: args[0].to_i, y: args[1].to_i)
+        params = {
+          point: point, colour: args[2]
         }
         @canvas.paint params
       end
@@ -96,8 +97,7 @@ module Commands
         from = Point.new(x: args[0].to_i, y: args[1].to_i)
         to = Point.new(x: args[0].to_i, y: args[2].to_i)
         vertical_line(from, to).each do |point|
-          params = {row: point.y, column: point.x}.merge(colour: colour)
-          @canvas.paint params
+          @canvas.paint(point: point, colour: colour)
         end
       end
     end
@@ -145,8 +145,7 @@ module Commands
         from = Point.new(x: args[0].to_i, y: args[2].to_i)
         to = Point.new(x: args[1].to_i, y: args[2].to_i)
         horizontal_line(from, to).each do |point|
-          params = {column: point.x, row: point.y}.merge(colour: colour)
-          @canvas.paint params
+          @canvas.paint(point: point, colour: colour)
         end
       end
     end
