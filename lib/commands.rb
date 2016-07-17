@@ -99,8 +99,10 @@ module Commands
     def invalid?(args)
       column = args[0].to_i
       starting_row = args[1].to_i
+      finishing_row = args[2].to_i
       args.size < 4 or
-        !within_bounds?(starting_row, column)
+        !within_bounds?(starting_row, column) or
+        !within_bounds?(finishing_row, column)
     end
 
     def vertical_line(column, from, to)

@@ -73,7 +73,15 @@ describe 'Painting a vertical line on the canvas' do
       it 'demonstrates usage' do
         expect(@help).to receive :run
         
-        @draw_vertical_line.run [-1, 2, 3, 'Z']
+        @draw_vertical_line.run [1, -1, 3, 'Z']
+      end
+    end
+
+    context 'when the ending coordinate is out of bounds' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @draw_vertical_line.run [1, 2, 0, 'W']
       end
     end
   end
