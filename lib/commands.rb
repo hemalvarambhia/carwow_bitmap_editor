@@ -87,8 +87,7 @@ module Commands
       else
         column = args[0].to_i
         colour = args[3]
-        from = args[1].to_i
-        to = args[2].to_i
+        from, to = args[1].to_i, args[2].to_i
         vertical_line(column, from, to).each do |point|
           params = point.merge(colour: colour)
           paint params
@@ -100,7 +99,13 @@ module Commands
 
     def self.invalid?(args)
       column = args[0].to_i
-      args.size < 4 or !column.between?(1, 250)
+      starting_row = args[1].to_i
+      args.size < 4 or
+        !within_bounds?(starting_row, column)
+    end
+
+    def self.within_bounds?(row, column)
+      column.between?(1, 250) and row.between?(1, 250)
     end
 
     def vertical_line(column, from, to)
