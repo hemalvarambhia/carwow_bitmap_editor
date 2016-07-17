@@ -57,7 +57,7 @@ module Commands
     private
 
     def invalid?(args)
-      point = Point.new(x: args[0].to_i, y: args[0].to_i)
+      point = Point.new(x: args[0].to_i, y: args[1].to_i)
       colour = args[2]
       args.size < 3 or
         !point.within_bounds? or

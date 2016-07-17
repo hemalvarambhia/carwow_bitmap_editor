@@ -56,9 +56,11 @@ describe 'Colouring a pixel on the canvas' do
 
     context 'when the coordinate is out of bounds' do
       it 'demonstrates usage' do
-        expect(@help).to receive(:run)
+        [ [251, 3, 'A'], [3, 251, 'A'] ].each do |invalid_coords|
+          expect(@help).to receive(:run)
         
-        @colour_pixel.run [251, 3, 'A']
+          @colour_pixel.run invalid_coords
+        end
       end
     end
 
