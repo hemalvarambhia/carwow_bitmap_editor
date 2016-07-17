@@ -1,4 +1,5 @@
 require_relative './coordinates'
+require_relative './colour'
 module Commands
   class SetupCanvas
     USAGE =
@@ -29,7 +30,7 @@ module Commands
   end
 
   class ColourPixel
-    include Coordinates
+    include Coordinates, Painting::Colour
     USAGE =
       "L - Colour in a pixel
        X - column (must be between 1 and 250)
@@ -59,7 +60,7 @@ module Commands
       colour = args[2]
       args.size < 3 or
         !within_bounds?(column, row) or
-        !('A'..'Z').include?(colour)
+        unavailable?(colour)
     end
   end
 
@@ -74,7 +75,7 @@ module Commands
   end
 
   class PaintVerticalLine
-    include Coordinates
+    include Coordinates, Painting::Colour
     USAGE =
       "V - paint vertical line
        X - column (must be between 1 and 250)
@@ -111,7 +112,7 @@ module Commands
       args.size < 4 or
         !within_bounds?(starting_row, column) or
         !within_bounds?(finishing_row, column) or
-        !('A'..'Z').include?(colour)
+        unavailable?(colour)
     end
 
     def vertical_line(column, from, to)
@@ -126,7 +127,7 @@ module Commands
   end
 
   class PaintHorizontalLine
-    include Coordinates
+    include Coordinates, Painting::Colour
     def initialize(canvas, help)
       @canvas = canvas
       @help = help
@@ -149,10 +150,11 @@ module Commands
     private
 
     def invalid?(args)
+      colour = args[3]
       args.size < 4 or
         !within_bounds?(args[0].to_i, args[2].to_i) or
         !within_bounds?(args[1].to_i, args[2].to_i) or
-        !('A'..'Z').include?(args[3])
+        unavailable?(colour)
     end
 
     def horizontal_line(from, to)
