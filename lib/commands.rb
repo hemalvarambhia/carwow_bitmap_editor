@@ -92,11 +92,11 @@ module Commands
       if invalid?(args)
         @help.run
       else
-        column = args[0].to_i
         colour = args[3]
-        from, to = args[1].to_i, args[2].to_i
-        vertical_line(column, from, to).each do |point|
-          params = point.merge(colour: colour)
+        from = Point.new(x: args[0].to_i, y: args[1].to_i)
+        to = Point.new(x: args[0].to_i, y: args[2].to_i)
+        vertical_line(from, to).each do |point|
+          params = {row: point.y, column: point.x}.merge(colour: colour)
           @canvas.paint params
         end
       end
@@ -115,10 +115,10 @@ module Commands
         unavailable?(colour)
     end
 
-    def vertical_line(column, from, to)
-      start = [from, to].min
-      finish = [from, to].max
-      (start..finish).map { |row| {column: column, row: row} }
+    def vertical_line(from, to)
+      start = [from.y, to.y].min
+      finish = [from.y, to.y].max
+      (start..finish).map { |y_coord| Point.new(x: from.x, y: y_coord) }
     end
   end
 
@@ -142,11 +142,10 @@ module Commands
         @help.run
       else
         colour = args[3]
-        from = args[0].to_i
-        to = args[1].to_i
-        row = args[2].to_i
-        horizontal_line(from, to, row).each do |point|
-          params = point.merge(colour: colour)
+        from = Point.new(x: args[0].to_i, y: args[2].to_i)
+        to = Point.new(x: args[1].to_i, y: args[2].to_i)
+        horizontal_line(from, to).each do |point|
+          params = {column: point.x, row: point.y}.merge(colour: colour)
           @canvas.paint params
         end
       end
@@ -164,10 +163,10 @@ module Commands
         unavailable?(colour)
     end
 
-    def horizontal_line(from_column, to_column, row)
-      start = [from_column, to_column].min
-      finish = [from_column, to_column].max
-      (start..finish).map { |column| { row: row, column: column } }
+    def horizontal_line(from, to)
+      start = [from.x, to.x].min
+      finish = [from.x, to.x].max
+      (start..finish).map { |x_coord| Point.new(x: x_coord, y: from.y) }
     end
   end
 

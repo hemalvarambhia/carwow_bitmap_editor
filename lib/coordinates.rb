@@ -1,5 +1,7 @@
 module Coordinates
   class Point
+    attr_reader :x, :y
+    
     def initialize(coords)
       @x = coords[:x]
       @y = coords[:y]
