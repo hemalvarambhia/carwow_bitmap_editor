@@ -97,7 +97,7 @@ module Commands
         from, to = args[1].to_i, args[2].to_i
         vertical_line(column, from, to).each do |point|
           params = point.merge(colour: colour)
-          paint params
+          @canvas.paint params
         end
       end
     end
@@ -120,14 +120,18 @@ module Commands
       finish = [from, to].max
       (start..finish).map { |row| {column: column, row: row} }
     end
-
-    def paint params
-      @canvas.paint params
-    end
   end
 
   class PaintHorizontalLine
     include Coordinates, Painting::Colour
+    USAGE =
+      "H - paint horizontal line
+       X1 - starting column (must be between 1 and 250)
+       X2 - finishing column (must be between 1 and 250)
+       Y - row (must be between 1 and 250)
+       C - colour (must be between 'A' to 'Z')
+      "
+
     def initialize(canvas, help)
       @canvas = canvas
       @help = help
