@@ -71,9 +71,11 @@ describe 'Painting a vertical line on the canvas' do
 
     context 'when the starting coordinate is out of bounds' do
       it 'demonstrates usage' do
-        expect(@help).to receive :run
+        [[1, -1, 3, 'Z'], [1, 1, 251, 'A']].each do |invalid_coords|
+          expect(@help).to receive :run
         
-        @draw_vertical_line.run [1, -1, 3, 'Z']
+          @draw_vertical_line.run [1, -1, 3, 'Z']
+        end
       end
     end
 
