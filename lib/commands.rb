@@ -76,7 +76,7 @@ module Commands
   class PaintVerticalLine
     include Coordinates
     USAGE =
-      "H - paint horizontal line
+      "V - paint vertical line
        X - column (must be between 1 and 250)
        Y1 - starting row (must be between 1 and 250)
        Y2 - finishing row (must be between 1 and 250)
