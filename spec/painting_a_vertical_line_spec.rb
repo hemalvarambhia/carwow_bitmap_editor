@@ -84,5 +84,15 @@ describe 'Painting a vertical line on the canvas' do
         @draw_vertical_line.run [1, 2, 0, 'W']
       end
     end
+
+    context 'when the colour is outside the acceptable range' do
+      it 'demonstrates usage' do
+        ['@', 'EF' 'FGH' '123' 'D1E2', nil ].each do |colour| 
+          expect(@help).to receive :run
+          
+          @draw_vertical_line.run [ 1, 2, 4, colour ]
+        end
+      end
+    end
   end
 end
