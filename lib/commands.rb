@@ -102,7 +102,6 @@ module Commands
     private
 
     def invalid?(args)
-      column = args[0].to_i
       starting_point = Point.new(x: args[0].to_i, y: args[1].to_i)
       finishing_point = Point.new(x: args[0].to_i, y: args[2].to_i)
       colour = args[3]
