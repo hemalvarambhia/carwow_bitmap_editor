@@ -69,35 +69,11 @@ describe 'Painting a vertical line on the canvas' do
       end
     end
 
-    context 'when the x-coordinate is below the minimum' do
+    context 'when the starting coordinate is out of bounds' do
       it 'demonstrates usage' do
         expect(@help).to receive :run
         
         @draw_vertical_line.run [-1, 2, 3, 'Z']
-      end
-    end
-
-    context 'when the x-coordinate is above the maximum' do
-      it 'demonstrates usage' do
-        expect(@help).to receive :run
-
-        @draw_vertical_line.run [260, 2, 3, 'A']
-      end
-    end
-
-    context 'when the starting y-coordinate is below the maximum' do
-      it 'demonstrates usage' do
-        expect(@help).to receive :run
-
-        @draw_vertical_line.run [3, -2, 3, 'A']
-      end
-    end
-
-    context 'when the starting y-coordinate is below the maximum' do
-      it 'demonstrates usage' do
-        expect(@help).to receive :run
-
-        @draw_vertical_line.run [3, 400, 3, 'A']
       end
     end
   end
