@@ -15,7 +15,8 @@ commands['L'] =
   ColourPixel.new(canvas, Help.new(std_out, ColourPixel::USAGE))
 commands['V'] =
   PaintVerticalLine.new(canvas, Help.new(std_out, PaintVerticalLine::USAGE))
-commands['H'] = PaintHorizontalLine.new(canvas)
+commands['H'] =
+  PaintHorizontalLine.new(canvas, Help.new(std_out))
 commands['X'] = ExitEditor.new
 commands['?'] = Help.new(std_out)
 

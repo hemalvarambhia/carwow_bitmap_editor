@@ -2,7 +2,9 @@ require 'commands'
 describe 'Painting a horizonal line on the canvas' do
   before :each do
     @canvas = double(:canvas)
-    @draw_horizontal_line = Commands::PaintHorizontalLine.new(@canvas)
+    @help = double :help
+    @draw_horizontal_line =
+      Commands::PaintHorizontalLine.new(@canvas, @help)
   end
 
   describe 'Correct usage' do
@@ -50,6 +52,20 @@ describe 'Painting a horizonal line on the canvas' do
           end
 
         @draw_horizontal_line.run [4, 5, 1, 'Y', 'X']
+      end
+    end
+  end
+
+  describe 'Incorrect usage' do
+    before :each do
+      allow(@canvas).to receive :paint
+    end
+    
+    context 'when there are too few args' do
+      it 'demonstrates usage' do
+        expect(@help).to receive :run
+
+        @draw_horizontal_line.run [1, 2, 3]
       end
     end
   end

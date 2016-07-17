@@ -126,17 +126,22 @@ module Commands
   end
 
   class PaintHorizontalLine
-    def initialize canvas
+    def initialize(canvas, help)
       @canvas = canvas
+      @help = help
     end
 
     def run args
-      row = args[2].to_i
-      colour = args[3]
-      from = args[0].to_i
-      to = args[1].to_i
-      horizontal_line(from, to).each do |column|
-        paint([column, row, colour])
+      if args.size < 4
+        @help.run
+      else
+        row = args[2].to_i
+        colour = args[3]
+        from = args[0].to_i
+        to = args[1].to_i
+        horizontal_line(from, to).each do |column|
+          paint([column, row, colour])
+        end
       end
     end
 
