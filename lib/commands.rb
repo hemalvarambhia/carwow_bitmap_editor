@@ -53,12 +53,15 @@ module Commands
     private
 
     def self.invalid?(args)
-      column = args.first.to_i
-      row = args[1].to_i
+      column, row = args[0].to_i, args[1].to_i
       colour = args[2]
       args.size < 3 or
-        !column.between?(1, 250) or !row.between?(1, 250) or
+        !within_bounds?(column, row) or
         !('A'..'Z').include?(colour)
+    end
+    
+    def self.within_bounds?(row, column)
+      column.between?(1, 250) and row.between?(1, 250)
     end
   end
 
@@ -86,8 +89,9 @@ module Commands
         colour = args[3]
         from = args[1].to_i
         to = args[2].to_i
-        vertical_line(from, to).each do |row|
-          paint([column, row, colour])
+        vertical_line(column, from, to).each do |point|
+          params = point.merge(colour: colour)
+          paint params
         end
       end
     end
@@ -99,16 +103,13 @@ module Commands
       args.size < 4 or !column.between?(1, 250)
     end
 
-    def vertical_line(from, to)
+    def vertical_line(column, from, to)
       start = [from, to].min
       finish = [from, to].max
-      (start..finish)
+      (start..finish).map { |row| {column: column, row: row} }
     end
-    
-    def paint args
-      params = {
-        column: args[0].to_i, row: args[1].to_i, colour: args[2]
-      }
+
+    def paint params
       @canvas.paint params
     end
   end
