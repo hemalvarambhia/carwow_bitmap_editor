@@ -47,10 +47,7 @@ module Commands
         @help.run
       else
         point = Point.new(x: args[0].to_i, y: args[1].to_i)
-        params = {
-          point: point, colour: args[2]
-        }
-        @canvas.paint params
+        @canvas.paint(point: point, colour: args[2])
       end
     end
 
