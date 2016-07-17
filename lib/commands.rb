@@ -1,4 +1,4 @@
-require 'coordinates'
+require_relative './coordinates'
 module Commands
   class SetupCanvas
     USAGE =
@@ -75,6 +75,13 @@ module Commands
 
   class PaintVerticalLine
     include Coordinates
+    USAGE =
+      "H - paint horizontal line
+       X - column (must be between 1 and 250)
+       Y1 - starting row (must be between 1 and 250)
+       Y2 - finishing row (must be between 1 and 250)
+       C - colour (must be between 'A' to 'Z')
+      "
     def initialize(canvas, help)
       @canvas = canvas
       @help = help
