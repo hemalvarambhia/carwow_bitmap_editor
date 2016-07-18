@@ -44,6 +44,30 @@ describe 'Coordinates' do
   end
 
   describe '#==' do
+    it 'is symmetric' do
+      point = coordinates(x: 5, y: 10)
+      
+      expect(point).to eq point
+    end
+
+    it 'is reflexive' do
+      point_1 = coordinates(x: 4, y: 1)
+      point_2 = coordinates(x: 4, y: 1)
+      
+      expect(point_1).to eq point_2
+      expect(point_2).to eq point_1
+    end
+
+    it 'is transitive' do
+      point_1 = coordinates(x: 3, y: 4)
+      point_2 = coordinates(x: 3, y: 4)
+      point_3 = coordinates(x: 3, y: 4)
+      
+      expect(point_1).to eq point_2
+      expect(point_2).to eq point_3
+      expect(point_3).to eq point_1
+    end
+    
     context 'the x co-ordinates are different' do
       it 'confirms them as not being equal' do
         point_1 = coordinates(x: 1, y: 2)
