@@ -23,7 +23,8 @@ module Commands
     def invalid? args
       width = args.first.to_i
       height = args[1].to_i
-      args.size < 2 or !width.between?(1, 250) or !height.between?(1, 250)
+      args.size < 2 or
+          !width.between?(1, 250) or !height.between?(1, 250)
     end
   end
 end
