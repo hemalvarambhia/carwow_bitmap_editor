@@ -1,6 +1,10 @@
 Inbox
 ========
+For edge cases, when a user invokes a command incorrectly (e.g. insufficient
+args, or unsupported colours), a usage message is displayed.
+
 # Tensions
+
 Currently, we're testing each command's validate arguments method:
 
 `invalid?(args)`
