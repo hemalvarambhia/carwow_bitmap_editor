@@ -2,7 +2,6 @@ require 'canvas'
 require 'coordinates'
 require 'commands'
 describe 'Running multiple commands' do
-  include Coordinates, Painting 
   before :each do
     @canvas = Painting::Canvas.new
   end
@@ -14,16 +13,18 @@ describe 'Running multiple commands' do
     Commands::PaintHorizontalLine.new(@canvas, nil).run [2, 3, 1, 'B']
 
     expect(@canvas).to be_width(3).and be_height(3)
-    expect(@canvas).to be_painted('C').at Coordinates::Point.new(x: 3, y: 3)
+    expect(@canvas).to be_painted('C').at coordinates(x: 3, y: 3)
     [{x: 1, y: 1}, {x: 1, y: 2}, {x: 1, y: 3}].each do |coords|
-      point = Coordinates::Point.new coords
-      expect(@canvas).to be_painted('A').at point
+      expect(@canvas).to be_painted('A').at coordinates(coords)
     end
     [{x: 2, y: 1}, {x: 3, y: 1}].each do |coords|
-      point = Coordinates::Point.new coords
-      expect(@canvas).to be_painted('B').at point
+      expect(@canvas).to be_painted('B').at coordinates(coords)
     end
   end
+
+  def coordinates coords
+    Coordinates::Point.new coords
+  end 
 
   RSpec::Matchers.define :be_width do |expected_width|
     match do |canvas|
