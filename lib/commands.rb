@@ -8,22 +8,22 @@ require_relative '../lib/help'
 require_relative '../lib/exit_editor'
 
 module Commands
-  def setup_for(canvas, std_out)
+  def setup_for(canvas, output)
     commands = {
-        'I' => SetupCanvas.new(canvas, Help.new(std_out, SetupCanvas::USAGE)),
+        'I' => SetupCanvas.new(canvas, Help.new(output, SetupCanvas::USAGE)),
         'C' => ClearCanvas.new(canvas),
-        'S' => DisplayCanvas.new(std_out, canvas),
-        'L' => ColourPixel.new(canvas, Help.new(std_out, ColourPixel::USAGE)),
+        'S' => DisplayCanvas.new(output, canvas),
+        'L' => ColourPixel.new(canvas, Help.new(output, ColourPixel::USAGE)),
         'V' =>
             PaintVerticalLine.new(
-                canvas, Help.new(std_out, PaintVerticalLine::USAGE)),
+                canvas, Help.new(output, PaintVerticalLine::USAGE)),
         'H' =>
             PaintHorizontalLine.new(
-                canvas, Help.new(std_out, PaintHorizontalLine::USAGE)),
+                canvas, Help.new(output, PaintHorizontalLine::USAGE)),
         'X' => ExitEditor.new,
-        '?' => Help.new(std_out)
+        '?' => Help.new(output)
     }
-    commands.default = Help.new(std_out)
+    commands.default = Help.new(output)
 
     commands
   end
