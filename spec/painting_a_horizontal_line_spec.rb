@@ -12,7 +12,7 @@ describe 'Painting a horizonal line on the canvas' do
   describe 'Correct usage' do
     it 'paints only the horizontal line specified' do
       (1..5).each do |x_coord|
-        point = Coordinates::Point.new(x: x_coord, y: 2)
+        point = coordinates(x: x_coord, y: 2)
         expect(@canvas).to receive(:paint).with(point: point, colour: 'W')
       end
 
@@ -21,7 +21,7 @@ describe 'Painting a horizonal line on the canvas' do
 
     it 'paints a horizontal line anywhere' do
       (1..2).each do |x_coord|
-        point = Coordinates::Point.new(x: x_coord, y: 3)
+        point = coordinates(x: x_coord, y: 3)
         expect(@canvas).to receive(:paint).with(point: point, colour: 'W')
       end
 
@@ -30,7 +30,7 @@ describe 'Painting a horizonal line on the canvas' do
 
     it 'paints a horizontal line anywhere any colour' do
       (1..2).each do |x_coord|
-        point = Coordinates::Point.new(x: x_coord, y: 3)
+        point = coordinates(x: x_coord, y: 3)
         expect(@canvas).to receive(:paint).with(point: point, colour: 'Z')
       end
 
@@ -39,7 +39,7 @@ describe 'Painting a horizonal line on the canvas' do
 
     it 'paints a horizontal line from right to left' do
       (1..2).each do |x_coord|
-        point = Coordinates::Point.new(x: x_coord, y: 3)
+        point = coordinates(x: x_coord, y: 3)
         expect(@canvas).to receive(:paint).with(point: point, colour: 'Z')
       end
 
@@ -49,12 +49,16 @@ describe 'Painting a horizonal line on the canvas' do
     context 'when it receives extra arguments' do
       it 'ignores them' do
         (4..5).each do |x_coord|
-          point = Coordinates::Point.new(x: x_coord, y: 1)
+          point = coordinates(x: x_coord, y: 1)
           expect(@canvas).to receive(:paint).with(point: point, colour: 'Y')
         end
 
         @draw_horizontal_line.run [4, 5, 1, 'Y', 'X']
       end
+    end
+
+    def coordinates coords
+      Coordinates::Point.new coords
     end
   end
 
