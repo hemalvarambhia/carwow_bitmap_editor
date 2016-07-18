@@ -1,4 +1,4 @@
-require 'commands'
+require 'paint_vertical_line'
 describe 'Painting a vertical line on the canvas' do
   before :each do
     @canvas = double(:canvas)

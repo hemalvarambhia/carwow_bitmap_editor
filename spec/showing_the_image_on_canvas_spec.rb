@@ -1,4 +1,4 @@
-require 'commands'
+require 'display_canvas'
 describe 'Displaying the canvas' do
   before :each do
     @output = double :output

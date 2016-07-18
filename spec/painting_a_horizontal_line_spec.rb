@@ -1,4 +1,4 @@
-require 'commands'
+require 'paint_horizontal_line'
 require 'coordinates'
 describe 'Painting a horizonal line on the canvas' do
   include Coordinates

@@ -1,4 +1,4 @@
-require 'commands'
+require 'exit_editor'
 describe 'Exiting' do
   before :each do
     @editor = Commands::ExitEditor.new

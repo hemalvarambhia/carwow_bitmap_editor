@@ -1,5 +1,4 @@
-require 'commands'
-require 'coordinates'
+require 'colour_pixel'
 describe 'Colouring a pixel on the canvas' do
   include Coordinates
   before :each do

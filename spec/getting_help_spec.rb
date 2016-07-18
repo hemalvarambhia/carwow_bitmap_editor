@@ -1,4 +1,4 @@
-require 'commands'
+require 'help'
 describe 'Getting help' do
   it 'displays advice on how to use the commands' do
     io_output = double :output

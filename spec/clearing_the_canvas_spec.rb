@@ -1,4 +1,4 @@
-require 'commands'
+require 'clear_canvas'
 describe 'Clearing the canvas' do
   before :each do
     @canvas = double(:canvas).as_null_object

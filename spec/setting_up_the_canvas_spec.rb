@@ -1,4 +1,4 @@
-require 'commands'
+require 'setup_canvas'
 describe 'Setting up the canvas' do
   before :each do
     @canvas = double(:canvas)
