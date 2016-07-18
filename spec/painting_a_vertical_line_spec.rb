@@ -10,7 +10,7 @@ describe 'Painting a vertical line on the canvas' do
   describe 'Correct usage' do
     it 'paints a vertical line on the specified part' do
       (3..6).each do |y_coord|
-        point = Coordinates::Point.new(x: 2, y: y_coord)
+        point = coordinates(x: 2, y: y_coord)
         expect(@canvas).to receive(:paint).with(point: point, colour: 'W')
       end
 
@@ -19,7 +19,7 @@ describe 'Painting a vertical line on the canvas' do
 
     it 'paints a vertical line anywhere' do
       (1..3).each do |y_coord|
-        point = Coordinates::Point.new(x: 5, y: y_coord)
+        point = coordinates(x: 5, y: y_coord)
         expect(@canvas).to receive(:paint).with(point: point, colour: 'W')
       end
 
@@ -28,7 +28,7 @@ describe 'Painting a vertical line on the canvas' do
 
     it 'paints a vertical line anywhere in any colour' do
       (2..4).each do |y_coord|
-        point = Coordinates::Point.new(x: 4, y: y_coord)
+        point = coordinates(x: 4, y: y_coord)
         expect(@canvas).to receive(:paint).with(point: point, colour: 'H')
       end
 
@@ -37,7 +37,7 @@ describe 'Painting a vertical line on the canvas' do
 
     it 'paints a vertical line in an upward direction' do
       (2..4).each do |y_coord|
-        point = Coordinates::Point.new(x: 4, y: y_coord)
+        point = coordinates(x: 4, y: y_coord)
         expect(@canvas).to receive(:paint).with(point: point, colour: 'H')
       end
 
@@ -47,12 +47,16 @@ describe 'Painting a vertical line on the canvas' do
     context 'when it receives extra parameters' do
       it 'ignores them' do
         (2..3).each do |y_coord|
-          point = Coordinates::Point.new(x: 1, y: y_coord)
+          point = coordinates(x: 1, y: y_coord)
           expect(@canvas).to receive(:paint).with(point: point, colour: 'H')
         end
 
         @draw_vertical_line.run [1, 2, 3, 'H', 'N']
       end
+    end
+
+    def coordinates coords
+      Coordinates::Point.new coords
     end
   end
 
