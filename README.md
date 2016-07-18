@@ -47,3 +47,13 @@ OWOOO
 OWOOO
 OWOOO
 ```
+
+# Ruby Version Used
+2.3.0
+
+# Running The Program
+
+```bundle exec ruby runner.rb```
+
+# Running The Tests
+```bundle exec guard start```
