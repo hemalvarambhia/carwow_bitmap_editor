@@ -43,4 +43,10 @@ describe 'Command Factory' do
   it 'supports a terminate command' do
     expect(@commands['X']).to respond_to :run
   end
+
+  context 'when the command is unsupported' do
+    it 'runs a default command' do
+      expect(@commands['U']).to respond_to :run
+    end
+  end
 end
