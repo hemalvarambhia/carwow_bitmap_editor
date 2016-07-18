@@ -1,7 +1,4 @@
-require 'forwardable'
 class BitmapEditor
-  extend Forwardable
-
   def initialize(input, commands)
     @input = input
     @commands = commands
