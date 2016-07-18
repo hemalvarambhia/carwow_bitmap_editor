@@ -4,7 +4,7 @@ module Commands
       @canvas = canvas
     end
 
-    def run args
+    def run *args
       @canvas.clear
     end
   end

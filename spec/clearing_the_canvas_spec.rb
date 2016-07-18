@@ -8,7 +8,7 @@ describe 'Clearing the canvas' do
   it 'wipes the canvas clean' do
     expect(@canvas).to receive :clear
 
-    @clear_canvas.run []
+    @clear_canvas.run
   end
 end
 
