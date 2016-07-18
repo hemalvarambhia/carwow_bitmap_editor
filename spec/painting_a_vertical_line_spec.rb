@@ -1,5 +1,7 @@
 require 'paint_vertical_line'
+require 'coordinates_helper'
 describe 'Painting a vertical line on the canvas' do
+  include CoordinatesHelper
   before :each do
     @canvas = double(:canvas)
     @help = double :help
@@ -53,10 +55,6 @@ describe 'Painting a vertical line on the canvas' do
 
         @draw_vertical_line.run [1, 2, 3, 'H', 'N']
       end
-    end
-
-    def coordinates coords
-      Coordinates::Point.new coords
     end
   end
 

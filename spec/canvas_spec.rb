@@ -1,7 +1,7 @@
 require 'canvas'
-require 'coordinates'
+require 'coordinates_helper'
 describe 'A Canvas' do
-  include Coordinates
+  include CoordinatesHelper
   before :each do
     @canvas = Painting::Canvas.new
   end
@@ -127,10 +127,6 @@ describe 'A Canvas' do
 
       expect(@canvas).to be_width(0).and be_height(0)
     end
-  end
-
-  def coordinates(coords)
-    Coordinates::Point.new coords
   end
 
   RSpec::Matchers.define :be_width do |expected_width|

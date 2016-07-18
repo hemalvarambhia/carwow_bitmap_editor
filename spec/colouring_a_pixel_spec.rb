@@ -1,6 +1,7 @@
 require 'colour_pixel'
+require 'coordinates_helper'
 describe 'Colouring a pixel on the canvas' do
-  include Coordinates
+  include CoordinatesHelper
   before :each do
     @canvas = double(:canvas, blank: nil)
     @help = double :help
@@ -37,10 +38,6 @@ describe 'Colouring a pixel on the canvas' do
 
         @colour_pixel.run [2, 10, 'C', 'B']
       end
-    end
-
-    def coordinates(coords)
-      Coordinates::Point.new(coords)
     end
   end
 

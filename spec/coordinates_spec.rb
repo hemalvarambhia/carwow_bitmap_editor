@@ -1,6 +1,6 @@
-require 'coordinates'
+require 'coordinates_helper'
 describe 'Coordinates' do
-  include Coordinates
+  include CoordinatesHelper
   describe '#within_bounds?' do
     context 'when the x-coordinate is below the minimum' do
       it 'confirms the co-ordinate as being out of bounds' do
@@ -70,9 +70,5 @@ describe 'Coordinates' do
         expect(point_1).to eq point_2
       end
     end
-  end
-
-  def coordinates(coords)
-    Coordinates::Point.new coords
   end
 end

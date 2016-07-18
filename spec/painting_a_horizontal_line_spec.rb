@@ -1,7 +1,7 @@
 require 'paint_horizontal_line'
-require 'coordinates'
+require 'coordinates_helper'
 describe 'Painting a horizonal line on the canvas' do
-  include Coordinates
+  include CoordinatesHelper
   before :each do
     @canvas = double(:canvas)
     @help = double :help
@@ -55,10 +55,6 @@ describe 'Painting a horizonal line on the canvas' do
 
         @draw_horizontal_line.run [4, 5, 1, 'Y', 'X']
       end
-    end
-
-    def coordinates coords
-      Coordinates::Point.new coords
     end
   end
 

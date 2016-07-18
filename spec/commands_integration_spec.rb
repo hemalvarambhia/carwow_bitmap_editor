@@ -1,7 +1,8 @@
 require 'canvas'
-require 'coordinates'
+require 'coordinates_helper'
 require 'commands'
 describe 'Running multiple commands' do
+  include CoordinatesHelper
   before :each do
     @canvas = Painting::Canvas.new
   end
@@ -21,10 +22,6 @@ describe 'Running multiple commands' do
       expect(@canvas).to be_painted('B').at coordinates(coords)
     end
   end
-
-  def coordinates coords
-    Coordinates::Point.new coords
-  end 
 
   RSpec::Matchers.define :be_width do |expected_width|
     match do |canvas|
