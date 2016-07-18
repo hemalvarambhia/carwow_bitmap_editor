@@ -55,5 +55,5 @@ OWOOO
 
 ```bundle exec ruby runner.rb```
 
-# Running The Tests
+# Running The Specs
 ```bundle exec guard start```
