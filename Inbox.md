@@ -23,8 +23,4 @@ Command pattern appears to be emerging in the `BitmapEditor`
 **Disadvantages**
    - We need eight new classes
 
-**TODO**
- - Command edge cases
-      - too few args
-      - dimensions out of range
 
