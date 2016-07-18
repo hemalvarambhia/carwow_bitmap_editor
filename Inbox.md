@@ -24,9 +24,9 @@ Command pattern appears to be emerging in the `BitmapEditor`
    - We need eight new classes
 
 # Tensions
-Currently, we're testing each command's validate arguments method 
+Currently, we're testing each command's validate arguments method:
 
-```invalid?```
+`invalid?(args)`
 
 Namely, the command objects have two responsibilities: 
 parsing and then executing the command.
