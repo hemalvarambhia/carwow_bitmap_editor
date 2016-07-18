@@ -44,13 +44,13 @@ describe 'Coordinates' do
   end
 
   describe '#==' do
-    it 'is symmetric' do
+    it 'is reflexive' do
       point = coordinates(x: 5, y: 10)
       
       expect(point).to eq point
     end
 
-    it 'is reflexive' do
+    it 'is symmetric' do
       point_1 = coordinates(x: 4, y: 1)
       point_2 = coordinates(x: 4, y: 1)
       
