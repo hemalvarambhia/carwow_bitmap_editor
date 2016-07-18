@@ -9,21 +9,21 @@ describe 'Colouring a pixel on the canvas' do
 
   describe 'Correct usage' do
     it 'colours in the specified pixel' do
-      point = Coordinates::Point.new(x: 2, y: 3)
+      point = coordinates(x: 2, y: 3)
       expect(@canvas).to receive(:paint).with(point: point, colour: 'A')
 
       @colour_pixel.run [2, 3, 'A']
     end
 
     it 'colours in any pixel' do
-      point = Coordinates::Point.new(x: 3, y: 4)
+      point = coordinates(x: 3, y: 4)
       expect(@canvas).to receive(:paint).with(point: point, colour: 'A')
 
       @colour_pixel.run [3, 4, 'A']
     end
 
     it 'colours in any pixel with different colours' do
-      point = Coordinates::Point.new(x: 4, y: 5)
+      point = coordinates(x: 4, y: 5)
       expect(@canvas).to receive(:paint).with(point: point, colour: 'B')
 
       @colour_pixel.run [4, 5, 'B']
@@ -31,12 +31,16 @@ describe 'Colouring a pixel on the canvas' do
 
     context 'when extra arguments are given' do
       it 'ignores them' do
-        point = Coordinates::Point.new(x: 2, y: 10)
+        point = coordinates(x: 2, y: 10)
         expect(@canvas).to(
           receive(:paint).with(point: point, colour: 'C'))
 
         @colour_pixel.run [2, 10, 'C', 'B']
       end
+    end
+
+    def coordinates(coords)
+      Coordinates::Point.new(coords)
     end
   end
 
