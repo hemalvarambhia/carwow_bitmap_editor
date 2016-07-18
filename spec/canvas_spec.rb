@@ -40,41 +40,41 @@ describe 'A Canvas' do
     end
 
     it 'paints the given pixel a colour' do
-      point = Coordinates::Point.new(x: 1, y: 1)
+      point = coordinates(x: 1, y: 1)
       @canvas.paint(point: point, colour: 'H')
 
       expect(@canvas).to be_painted('H').at point
     end
 
     it 'paints any pixel a colour' do
-      point = Coordinates::Point.new(x: 2, y: 1) 
+      point = coordinates(x: 2, y: 1) 
       @canvas.paint(point: point, colour: 'H')  
 
       expect(@canvas).to be_painted('H').at point
     end
 
     it 'paints any pixel any colour' do
-      point = Coordinates::Point.new(x: 1, y: 2)
+      point = coordinates(x: 1, y: 2)
       @canvas.paint(point: point, colour: 'X')       
 
       expect(@canvas).to be_painted('X').at point
     end
 
     it 'leaves all other pixels white' do
-      point = Coordinates::Point.new(x: 1, y: 2)
+      point = coordinates(x: 1, y: 2)
       @canvas.paint(point: point, colour: 'X')
 
       [
-        Coordinates::Point.new(x: 1, y: 1),
-        Coordinates::Point.new(x: 2, y: 1),
-        Coordinates::Point.new(x: 2, y: 2),
+        coordinates(x: 1, y: 1), 
+        coordinates(x: 2, y: 1),
+        coordinates(x: 2, y: 2),
       ].each do |point|
         expect(@canvas).to be_painted('O').at point
       end
     end
 
     it 'does not paint outside of the defined boundaries' do
-      not_on_canvas = Coordinates::Point.new(x: 3, y: 1)
+      not_on_canvas = coordinates(x: 3, y: 1)
       colour = @canvas.paint(point: not_on_canvas, colour: 'U')
 
       expect(@canvas).to be_width(2).and be_height(2)
@@ -82,7 +82,7 @@ describe 'A Canvas' do
     end
 
     it 'does not paint away from the canvas' do
-      not_on_canvas = Coordinates::Point.new(x: 3, y: 3)
+      not_on_canvas = coordinates(x: 3, y: 3)
       colour = @canvas.paint(point: not_on_canvas, colour: 'U')
 
       expect(@canvas).to be_width(2).and be_height(2)
@@ -114,9 +114,9 @@ describe 'A Canvas' do
       @canvas.blank(width: 2, height: 2)
       
       @canvas.paint(
-        point: Coordinates::Point.new(x: 1, y: 1), colour: 'A')
+        point: coordinates(x: 1, y: 1), colour: 'A')
       @canvas.paint(
-        point: Coordinates::Point.new(x: 2, y: 2), colour: 'B')
+        point: coordinates(x: 2, y: 2), colour: 'B')
       @canvas.clear
 
       expect(@canvas).to be_width(2).and be_height(2).and be_white
@@ -127,6 +127,10 @@ describe 'A Canvas' do
 
       expect(@canvas).to be_width(0).and be_height(0)
     end
+  end
+
+  def coordinates(coords)
+    Coordinates::Point.new coords
   end
 
   RSpec::Matchers.define :be_width do |expected_width|
