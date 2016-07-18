@@ -43,35 +43,34 @@ describe 'A Canvas' do
       point = Coordinates::Point.new(x: 1, y: 1)
       @canvas.paint(point: point, colour: 'H')
 
-      image = @canvas.image
-      expect(image[0][0]).to eq 'H'
+      expect(@canvas).to be_painted('H').at point
     end
 
     it 'paints any pixel a colour' do
       point = Coordinates::Point.new(x: 2, y: 1) 
       @canvas.paint(point: point, colour: 'H')  
 
-      image = @canvas.image
-      expect(image[0][1]).to eq 'H'
+      expect(@canvas).to be_painted('H').at point
     end
 
     it 'paints any pixel any colour' do
       point = Coordinates::Point.new(x: 1, y: 2)
       @canvas.paint(point: point, colour: 'X')       
 
-      image = @canvas.image
-      expect(image[1][0]).to eq 'X'
+      expect(@canvas).to be_painted('X').at point
     end
 
     it 'leaves all other pixels white' do
       point = Coordinates::Point.new(x: 1, y: 2)
       @canvas.paint(point: point, colour: 'X')
 
-      image = @canvas.image
-      untouched = [
-        image[0][0], image[0][1], image[1][1]
-      ]
-      expect(untouched).to all eq 'O'
+      [
+        Coordinates::Point.new(x: 1, y: 1),
+        Coordinates::Point.new(x: 2, y: 1),
+        Coordinates::Point.new(x: 2, y: 2),
+      ].each do |point|
+        expect(@canvas).to be_painted('O').at point
+      end
     end
 
     it 'does not paint outside of the defined boundaries' do
@@ -88,6 +87,25 @@ describe 'A Canvas' do
 
       expect(@canvas.image).to be_width(2).and be_height(2)
       expect(colour).to be_nil
+    end
+
+    RSpec::Matchers.define :be_painted do |colour|
+      match do |canvas|
+        colour_at_point = canvas.image[@point.y - 1][@point.x - 1]
+        colour_at_point == colour
+      end
+
+      chain :at do |point|
+        @point = point
+      end
+
+      failure_message do |actual|
+        image = actual.image
+        actual_colour = image[@point.y - 1][@point.x - 1]
+        message = "Expected colour at (#{@point.x}, #{@point.y}) to "
+        message << "be #{colour} but was #{actual_colour}"
+        message
+      end
     end
   end
 
