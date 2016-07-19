@@ -22,10 +22,6 @@ describe 'Command Factory' do
   end
 
   it 'supports a paint vertical line command' do
-    expect(@commands['L']).to respond_to :run
-  end
-
-  it 'supports a paint vertical line command' do
     expect(@commands['V']).to respond_to :run
   end
 
