@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'display_canvas'
 describe 'Displaying the canvas' do
   before :each do

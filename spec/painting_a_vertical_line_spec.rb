@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'paint_vertical_line'
 require 'coordinates_helper'
 describe 'Painting a vertical line on the canvas' do

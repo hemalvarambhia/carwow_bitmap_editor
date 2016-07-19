@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'paint_horizontal_line'
 require 'coordinates_helper'
 describe 'Painting a horizonal line on the canvas' do

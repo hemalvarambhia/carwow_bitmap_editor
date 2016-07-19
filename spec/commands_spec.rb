@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'commands'
 require 'canvas'
 describe 'Command Factory' do

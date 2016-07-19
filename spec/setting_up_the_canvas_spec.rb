@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'setup_canvas'
 describe 'Setting up the canvas' do
   before :each do

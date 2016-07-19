@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'clear_canvas'
 describe 'Clearing the canvas' do
   before :each do

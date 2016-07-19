@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'exit_editor'
 describe 'Exiting' do
   before :each do

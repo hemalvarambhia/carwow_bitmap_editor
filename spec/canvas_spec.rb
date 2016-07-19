@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'canvas'
 require 'coordinates_helper'
 require 'canvas_matchers'

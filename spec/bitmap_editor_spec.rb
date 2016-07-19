@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'bitmap_editor'
 describe 'Bitmap Editor' do
   before :each do

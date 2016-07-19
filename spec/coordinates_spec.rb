@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'coordinates_helper'
 describe 'Coordinates' do
   include CoordinatesHelper

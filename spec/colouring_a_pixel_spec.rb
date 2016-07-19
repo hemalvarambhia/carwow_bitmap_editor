@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'colour_pixel'
 require 'coordinates_helper'
 describe 'Colouring a pixel on the canvas' do
