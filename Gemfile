@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 group :development do
+  gem 'flog'
   gem 'guard'
   gem 'guard-bundler'
 end
