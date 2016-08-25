@@ -2,14 +2,7 @@ require_relative './coordinates'
 require_relative './colour'
 module Commands
   class PaintHorizontalLine
-    include Coordinates, Painting::Colour
-    USAGE =
-        "H - paint horizontal line
-       X1 - starting column (must be between 1 and 250)
-       X2 - finishing column (must be between 1 and 250)
-       Y - row (must be between 1 and 250)
-       C - colour (must be between 'A' to 'Z')
-      "
+    include Coordinates
 
     def initialize(canvas)
       @canvas = canvas
