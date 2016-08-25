@@ -19,10 +19,6 @@ module Coordinates
       (start..finish).map { |x_coord| Point.new(x: x_coord, y: from.y) }
     end
 
-    def within_bounds?
-      @x.between?(1, 250) and @y.between?(1, 250)
-    end
-
     def ==(other)
       x == other.x and y == other.y
     end
