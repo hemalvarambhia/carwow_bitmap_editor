@@ -5,9 +5,8 @@ describe 'Painting a vertical line on the canvas' do
   include CoordinatesHelper
   before :each do
     @canvas = double(:canvas)
-    @help = double :help
     @draw_vertical_line =
-      Commands::PaintVerticalLine.new(@canvas, @help)
+      Commands::PaintVerticalLine.new @canvas
   end
 
   describe 'Correct usage' do
@@ -47,64 +46,11 @@ describe 'Painting a vertical line on the canvas' do
       @draw_vertical_line.run [4, 4, 2, 'H']
     end
 
-    context 'when it receives extra parameters' do
-      it 'ignores them' do
-        from, to = coordinates(x: 1, y: 2), coordinates(x: 1, y: 3)
-        vertical_line(from, to).each do |point|
-          expect(@canvas).to receive(:paint).with(point: point, colour: 'H')
-        end
-
-        @draw_vertical_line.run [1, 2, 3, 'H', 'N']
-      end
-    end
-
     def vertical_line(from, to)
       start = [from.y, to.y].min
       finish = [from.y, to.y].max
 
       (start..finish).map {|y_coord| coordinates(x: from.x, y: y_coord) }
-    end
-  end
-
-  describe 'Incorrect usage' do
-    before :each do
-      allow(@canvas).to receive :paint
-    end
-    
-    context 'when it receives too few arguments' do
-      it 'demonstrates usage' do
-        expect(@help).to receive :run
-
-        @draw_vertical_line.run [1, 2, 3]
-      end
-    end
-
-    context 'when the starting coordinate is out of bounds' do
-      it 'demonstrates usage' do
-        [[1, -1, 3, 'Z'], [1, 1, 251, 'A']].each do |invalid_coords|
-          expect(@help).to receive :run
-        
-          @draw_vertical_line.run invalid_coords
-        end
-      end
-    end
-
-    context 'when the ending coordinate is out of bounds' do
-      it 'demonstrates usage' do
-        expect(@help).to receive :run
-
-        @draw_vertical_line.run [1, 2, 0, 'W']
-      end
-    end
-
-    context 'when the colour is outside the acceptable range' do
-      it 'demonstrates usage' do
-        ['@', 'EF' 'FGH' '123' 'D1E2', nil ].each do |colour| 
-          expect(@help).to receive :run
-          
-          @draw_vertical_line.run [ 1, 2, 4, colour ]
-        end
-      end
     end
   end
 end

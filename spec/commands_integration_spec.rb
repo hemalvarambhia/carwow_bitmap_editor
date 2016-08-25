@@ -10,10 +10,10 @@ describe 'Running multiple commands' do
   end
 
   it 'paints on a canvas' do
-    Commands::SetupCanvas.new(@canvas, nil).run [3, 3]
-    Commands::ColourPixel.new(@canvas, nil).run [3, 3, 'C']
-    Commands::PaintVerticalLine.new(@canvas, nil).run [1, 1, 3, 'A']
-    Commands::PaintHorizontalLine.new(@canvas, nil).run [2, 3, 1, 'B']
+    Commands::SetupCanvas.new(@canvas).run [3, 3]
+    Commands::ColourPixel.new(@canvas).run [3, 3, 'C']
+    Commands::PaintVerticalLine.new(@canvas).run [1, 1, 3, 'A']
+    Commands::PaintHorizontalLine.new(@canvas).run [2, 3, 1, 'B']
 
     expect(@canvas).to be_width(3).and be_height(3)
     expect(@canvas).to be_painted('C').at coordinates(x: 3, y: 3)

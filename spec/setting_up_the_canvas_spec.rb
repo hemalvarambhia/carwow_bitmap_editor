@@ -3,8 +3,7 @@ require 'setup_canvas'
 describe 'Setting up the canvas' do
   before :each do
     @canvas = double(:canvas)
-    @help = double :help
-    @set_up_canvas = Commands::SetupCanvas.new @canvas, @help
+    @set_up_canvas = Commands::SetupCanvas.new @canvas
   end
 
   describe 'Correct usage' do
@@ -18,60 +17,6 @@ describe 'Setting up the canvas' do
       expect(@canvas).to receive(:blank).with(width: 3, height: 4)
 
       @set_up_canvas.run [3, 4]
-    end
-
-    context 'when extra arguments are given' do
-      it 'ignores them' do
-        expect(@canvas).to receive(:blank).with(width: 2, height: 10)
-
-        @set_up_canvas.run [2, 10, 'A']
-      end
-    end
-  end
-
-  describe 'incorrect usage' do
-    before :each do
-      allow(@canvas).to receive :blank
-    end
-    
-    context 'when all dimensions are not specified' do
-      it 'demonstrates usage' do
-        expect(@help).to receive :run
-        
-        @set_up_canvas.run [2]
-      end
-    end
-
-    context 'when the width is less than the allowed minimum' do
-      it 'demonstrates usage' do
-        expect(@help).to receive :run
-
-        @set_up_canvas.run [ -5, 1 ]
-      end
-    end
-
-    context 'when the width is over the allowed maximum' do
-      it 'demonstrates usage' do
-        expect(@help).to receive :run
-
-        @set_up_canvas.run [251, 1]
-      end
-    end
-
-    context 'when the height is below the allowed minimum' do
-      it 'demonstrates usage' do
-        expect(@help).to receive :run
-
-        @set_up_canvas.run [5, -1]
-      end
-    end
-
-    context 'when the height is above the allowed maximum' do
-      it 'demonstrates usage' do
-        expect(@help).to receive :run
-
-        @set_up_canvas.run [5, 300]
-      end
     end
   end
 end

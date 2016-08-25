@@ -11,35 +11,20 @@ module Commands
        C - colour (must be between 'A' to 'Z')
       "
 
-    def initialize(canvas, help)
+    def initialize(canvas)
       @canvas = canvas
-      @help = help
     end
 
     def run args
-      if invalid?(args)
-        @help.run
-      else
-        colour = args[3]
-        from = Point.new(x: args[0].to_i, y: args[2].to_i)
-        to = Point.new(x: args[1].to_i, y: args[2].to_i)
-        horizontal_line(from, to).each do |point|
-          @canvas.paint(point: point, colour: colour)
-        end
+      colour = args[3]
+      from = Point.new(x: args[0].to_i, y: args[2].to_i)
+      to = Point.new(x: args[1].to_i, y: args[2].to_i)
+      horizontal_line(from, to).each do |point|
+        @canvas.paint(point: point, colour: colour)
       end
     end
 
     private
-
-    def invalid?(args)
-      colour = args[3]
-      starting_point = Point.new(x: args[0].to_i, y: args[2].to_i)
-      finishing_point = Point.new(x: args[1].to_i, y: args[2].to_i)
-      args.size < 4 or
-          !starting_point.within_bounds? or
-          !finishing_point.within_bounds? or
-          unavailable?(colour)
-    end
 
     def horizontal_line(from, to)
       start = [from.x, to.x].min

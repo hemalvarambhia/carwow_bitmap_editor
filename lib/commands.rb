@@ -10,16 +10,14 @@ require_relative '../lib/exit_editor'
 module Commands
   def setup_for(canvas, output)
     commands = {
-        'I' => SetupCanvas.new(canvas, Help.new(output, SetupCanvas::USAGE)),
+        'I' => SetupCanvas.new(canvas),
         'C' => ClearCanvas.new(canvas),
         'S' => DisplayCanvas.new(output, canvas),
-        'L' => ColourPixel.new(canvas, Help.new(output, ColourPixel::USAGE)),
+        'L' => ColourPixel.new(canvas),
         'V' =>
-            PaintVerticalLine.new(
-                canvas, Help.new(output, PaintVerticalLine::USAGE)),
+            PaintVerticalLine.new(canvas),
         'H' =>
-            PaintHorizontalLine.new(
-                canvas, Help.new(output, PaintHorizontalLine::USAGE)),
+            PaintHorizontalLine.new(canvas),
         'X' => ExitEditor.new,
         '?' => Help.new(output)
     }
